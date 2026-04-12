@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Tarun Singh — TK Web Solutions | Premium Portfolio</title>
-<meta name="description" content="Tarun Singh — Founder of TK Web Solutions, Bharatpur. Premium web design portfolio — coaching, NGO, business, e-commerce & government websites.">
+<title>Tarun Singh — TK Web Solutions | Premium 3D Portfolio</title>
+<meta name="description" content="Tarun Singh — Founder of TK Web Solutions, Bharatpur. Premium web & app development portfolio — websites, Android apps, coaching, NGO, business & e-commerce.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Cabinet+Grotesk:wght@300;400;500;700;800;900&display=optional" rel="stylesheet">
@@ -33,6 +33,14 @@ body::before{
   content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.032;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
+/* ── VIDEO SCANLINE OVERLAY ── */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);
+  animation:scanMove 8s linear infinite;
+}
+@keyframes scanMove{0%{background-position:0 0;}100%{background-position:0 100px;}}
 
 /* ── CUSTOM CURSOR ── */
 #cur,#cur2{position:fixed;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .18s,height .18s,background .2s;}
@@ -102,7 +110,7 @@ nav.scrolled{padding:12px 6%;background:rgba(5,5,16,.92);border-color:rgba(0,245
 .mobNav a:hover{color:var(--teal);}
 
 /* ════════════════════════════════════════════
-   HERO — SPLIT LAYOUT
+   HERO — CINEMATIC SPLIT LAYOUT
 ════════════════════════════════════════════ */
 #hero{
   min-height:100vh;display:flex;align-items:center;
@@ -123,6 +131,13 @@ nav.scrolled{padding:12px 6%;background:rgba(5,5,16,.92);border-color:rgba(0,245
   background-size:72px 72px;
   mask-image:radial-gradient(ellipse 85% 85% at 50% 50%,black,transparent 80%);
 }
+
+/* video-style vignette at hero bottom */
+.hero-vignette{
+  position:absolute;bottom:0;left:0;right:0;height:200px;z-index:0;pointer-events:none;
+  background:linear-gradient(to top,var(--bg),transparent);
+}
+
 .hero-inner{
   position:relative;z-index:1;max-width:1300px;width:100%;margin:0 auto;
   display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:center;
@@ -132,6 +147,8 @@ nav.scrolled{padding:12px 6%;background:rgba(5,5,16,.92);border-color:rgba(0,245
 .hero-dot{width:8px;height:8px;background:var(--teal);border-radius:50%;animation:dotPulse 1.6s infinite;flex-shrink:0;}
 @keyframes dotPulse{0%,100%{box-shadow:0 0 0 0 rgba(0,245,200,.5);}70%{box-shadow:0 0 0 10px transparent;}}
 .hero-tagtxt{font-size:.65rem;color:var(--teal);font-weight:700;letter-spacing:3.5px;text-transform:uppercase;}
+
+/* GLITCH EFFECT on hero h1 */
 .hero-h1{
   font-family:'Syne',sans-serif;
   font-weight:800;
@@ -139,10 +156,39 @@ nav.scrolled{padding:12px 6%;background:rgba(5,5,16,.92);border-color:rgba(0,245
   line-height:.95;
   letter-spacing:-2.5px;
   margin-bottom:22px;
+  position:relative;
 }
 .hero-h1 .l1{display:block;color:var(--white);}
 .hero-h1 .l2{display:block;color:var(--teal);position:relative;}
 .hero-h1 .l3{display:block;color:var(--muted2);font-size:.48em;font-weight:600;letter-spacing:.5px;margin-top:4px;}
+.glitch{position:relative;display:inline-block;}
+.glitch::before,.glitch::after{
+  content:attr(data-text);position:absolute;top:0;left:0;
+  width:100%;height:100%;
+}
+.glitch::before{
+  color:var(--coral);animation:glitch1 3.5s infinite;clip-path:polygon(0 0,100% 0,100% 35%,0 35%);
+  transform:translateX(-2px);opacity:.7;
+}
+.glitch::after{
+  color:var(--teal);animation:glitch2 3.5s infinite;clip-path:polygon(0 65%,100% 65%,100% 100%,0 100%);
+  transform:translateX(2px);opacity:.7;
+}
+@keyframes glitch1{
+  0%,95%{transform:translateX(0);opacity:0;}
+  96%{transform:translateX(-3px) skewX(-2deg);opacity:.7;}
+  97%{transform:translateX(3px);opacity:.5;}
+  98%{transform:translateX(-1px);opacity:.7;}
+  99%,100%{transform:translateX(0);opacity:0;}
+}
+@keyframes glitch2{
+  0%,95%{transform:translateX(0);opacity:0;}
+  96%{transform:translateX(3px) skewX(2deg);opacity:.7;}
+  97%{transform:translateX(-2px);opacity:.5;}
+  98%{transform:translateX(2px);opacity:.7;}
+  99%,100%{transform:translateX(0);opacity:0;}
+}
+
 /* typewriter cursor */
 .tw-cur{display:inline-block;width:3px;height:.8em;background:var(--teal);margin-left:4px;vertical-align:middle;animation:twBlink .7s infinite;}
 @keyframes twBlink{0%,100%{opacity:1;}50%{opacity:0;}}
@@ -169,6 +215,7 @@ nav.scrolled{padding:12px 6%;background:rgba(5,5,16,.92);border-color:rgba(0,245
 .hstat:hover{background:rgba(0,245,200,.04);}
 .hstat-n{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;color:var(--teal);}
 .hstat-l{font-size:.58rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:3px;}
+
 /* RIGHT — 3D device mockup */
 .hero-right{display:flex;justify-content:center;align-items:center;position:relative;}
 .device-wrap{position:relative;}
@@ -189,19 +236,25 @@ nav.scrolled{padding:12px 6%;background:rgba(5,5,16,.92);border-color:rgba(0,245
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:8px;padding:16px;position:relative;
 }
-.device-screen::after{content:'✨ LIVE';position:absolute;top:10px;right:10px;background:var(--teal);color:var(--bg);font-size:.42rem;font-weight:800;padding:3px 8px;border-radius:20px;letter-spacing:1px;}
-.ds-logo{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:800;color:var(--teal);letter-spacing:2px;}
-.ds-sub{font-size:.42rem;color:rgba(255,255,255,.3);letter-spacing:2px;text-transform:uppercase;}
-.ds-bar{height:2.5px;border-radius:2px;background:linear-gradient(90deg,var(--teal),transparent);}
+/* scanline on device */
+.device-screen::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,245,200,.018) 3px,rgba(0,245,200,.018) 6px);
+}
+.device-screen::after{content:'✨ LIVE';position:absolute;top:10px;right:10px;background:var(--teal);color:var(--bg);font-size:.42rem;font-weight:800;padding:3px 8px;border-radius:20px;letter-spacing:1px;z-index:3;}
+.ds-logo{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:800;color:var(--teal);letter-spacing:2px;position:relative;z-index:1;}
+.ds-sub{font-size:.42rem;color:rgba(255,255,255,.3);letter-spacing:2px;text-transform:uppercase;position:relative;z-index:1;}
+.ds-bar{height:2.5px;border-radius:2px;background:linear-gradient(90deg,var(--teal),transparent);position:relative;z-index:1;}
 .ds-bar:nth-child(4){width:80%;}
 .ds-bar:nth-child(5){width:55%;opacity:.4;}
 .ds-bar:nth-child(6){width:35%;opacity:.22;}
-.ds-cards{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;margin-top:6px;}
+.ds-cards{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;margin-top:6px;position:relative;z-index:1;}
 .ds-card{background:rgba(0,245,200,.06);border:1px solid rgba(0,245,200,.1);border-radius:8px;padding:7px;text-align:center;}
 .ds-card span{font-size:.38rem;color:rgba(255,255,255,.4);display:block;}
 .ds-card strong{font-family:'Syne',sans-serif;font-size:.6rem;color:var(--teal);}
 .device-home{display:flex;align-items:center;justify-content:center;margin-top:8px;}
 .device-home-bar{width:50px;height:3px;background:rgba(255,255,255,.16);border-radius:2px;}
+
 /* floating badges */
 .fbadge{
   position:absolute;
@@ -248,7 +301,7 @@ nav.scrolled{padding:12px 6%;background:rgba(5,5,16,.92);border-color:rgba(0,245
 .marquee-sep{color:rgba(255,255,255,.08);font-size:1.4rem;flex-shrink:0;}
 
 /* ════════════════════════════════════════════
-   FOUNDER STORY — HIGH AURA
+   FOUNDER STORY — MAX AURA
 ════════════════════════════════════════════ */
 #founder{
   padding:110px 6%;
@@ -292,6 +345,22 @@ nav.scrolled{padding:12px 6%;background:rgba(5,5,16,.92);border-color:rgba(0,245
 }
 .founder-photo-box:hover .photo-overlay{opacity:1;}
 .photo-overlay-txt{font-family:'Syne',sans-serif;font-size:.75rem;color:var(--teal);font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+
+/* Founder coding activity bar */
+.founder-activity{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-top:14px;
+}
+.fac-title{font-size:.6rem;color:var(--teal);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.fac-bars{display:flex;gap:3px;align-items:flex-end;height:36px;}
+.fac-bar{
+  flex:1;border-radius:3px 3px 0 0;
+  background:linear-gradient(to top,var(--teal),var(--purple));
+  opacity:.5;transition:opacity .3s,height .3s;
+  animation:barPop .6s ease both;
+}
+.fac-bar:hover{opacity:1;}
+@keyframes barPop{from{transform:scaleY(0);transform-origin:bottom;}to{transform:scaleY(1);transform-origin:bottom;}}
+.fac-label{font-size:.5rem;color:var(--muted);margin-top:6px;text-align:center;}
 
 /* founder name badge */
 .founder-name-badge{
@@ -387,6 +456,136 @@ nav.scrolled{padding:12px 6%;background:rgba(5,5,16,.92);border-color:rgba(0,245
 .ach-lbl{font-size:.68rem;color:var(--muted);margin-top:2px;}
 
 /* ════════════════════════════════════════════
+   APP SHOWCASE SECTION — NEW!
+════════════════════════════════════════════ */
+#apps{
+  padding:110px 6%;
+  position:relative;z-index:1;
+  overflow:hidden;
+  background:linear-gradient(180deg,var(--bg),var(--bg2) 50%,var(--bg));
+}
+.apps-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 50% 70% at 80% 50%,rgba(167,139,250,.06),transparent 65%),
+    radial-gradient(ellipse 40% 50% at 10% 30%,rgba(0,245,200,.04),transparent 60%);
+}
+.apps-grid-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(167,139,250,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(167,139,250,.012) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.apps-inner{max-width:1260px;margin:0 auto;position:relative;z-index:1;}
+.apps-header{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:60px;flex-wrap:wrap;}
+.apps-header-left{}
+.app-platform-badges{display:flex;gap:8px;margin-top:16px;}
+.apb{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:50px;font-size:.62rem;font-weight:700;letter-spacing:.5px;}
+.apb.android{background:rgba(61,220,132,.1);border:1px solid rgba(61,220,132,.25);color:#3ddc84;}
+.apb.web{background:rgba(0,245,200,.08);border:1px solid rgba(0,245,200,.2);color:var(--teal);}
+
+/* App cards */
+.apps-showcase{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.app-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:28px;overflow:hidden;
+  transition:all .4s cubic-bezier(.23,1,.32,1);
+  position:relative;
+}
+.app-card:hover{transform:translateY(-8px);box-shadow:0 40px 80px rgba(0,0,0,.6),0 0 60px var(--app-glow,rgba(0,245,200,.1));}
+.app-card-header{
+  padding:28px 28px 0;
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:20px;
+}
+.app-icon-wrap{
+  width:68px;height:68px;border-radius:18px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;flex-shrink:0;
+  position:relative;overflow:hidden;
+}
+.app-icon-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+}
+.app-info{}
+.app-name{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:3px;}
+.app-ver{font-size:.6rem;color:var(--muted);letter-spacing:1px;}
+.app-platform-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:.55rem;font-weight:700;margin-top:5px;}
+
+/* phone mockup in app card */
+.app-phone-area{
+  padding:0 20px;display:flex;gap:14px;align-items:flex-end;overflow:hidden;
+  height:260px;
+}
+.app-phone{
+  flex-shrink:0;width:110px;
+  background:linear-gradient(160deg,#1a1a2e,#0f0f1e);
+  border-radius:20px;border:1.5px solid rgba(255,255,255,.1);
+  padding:8px 6px 12px;
+  box-shadow:0 20px 50px rgba(0,0,0,.7);
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform .3s;
+}
+.app-card:hover .app-phone{transform:rotateY(-5deg) rotateX(3deg);}
+.app-phone-notch{width:36px;height:4px;background:rgba(0,0,0,.8);border-radius:0 0 6px 6px;margin:0 auto 6px;}
+.app-phone-screen{
+  border-radius:12px;overflow:hidden;
+  height:180px;
+  display:flex;flex-direction:column;
+  position:relative;
+}
+/* scanlines on app screen */
+.app-phone-screen::before{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.04) 2px,rgba(0,0,0,.04) 4px);
+}
+.app-phone-bar{width:28px;height:2px;background:rgba(255,255,255,.2);border-radius:2px;margin:6px auto 0;}
+.app-ss-list{display:flex;flex-direction:column;gap:10px;flex:1;overflow:hidden;}
+.app-ss{
+  width:100%;flex-shrink:0;border-radius:10px;overflow:hidden;
+  height:130px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.55rem;font-weight:700;letter-spacing:1px;
+  position:relative;
+  animation:ssCycle 6s ease-in-out infinite;
+}
+@keyframes ssCycle{0%,100%{opacity:1;}45%{opacity:1;}50%{opacity:0;}95%{opacity:0;}}
+.app-ss:nth-child(2){animation-delay:3s;}
+.app-ss-label{position:absolute;bottom:6px;left:8px;font-size:.38rem;color:rgba(255,255,255,.5);letter-spacing:1.5px;text-transform:uppercase;}
+.app-ss-badge{position:absolute;top:6px;right:6px;font-size:.36rem;font-weight:700;padding:2px 6px;border-radius:8px;}
+
+.app-desc{padding:20px 28px 24px;}
+.app-desc-text{font-size:.82rem;color:var(--muted);line-height:1.75;margin-bottom:14px;}
+.app-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.app-feat{padding:4px 10px;border-radius:20px;font-size:.6rem;font-weight:700;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--muted);}
+.app-cta-row{display:flex;gap:8px;}
+.app-dl-btn{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:11px;border-radius:12px;font-weight:800;font-size:.78rem;
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.app-dl-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);transform:translateX(-100%);transition:transform .5s;}
+.app-dl-btn:hover::before{transform:translateX(100%);}
+.app-wa-btn{
+  width:40px;height:40px;background:#25d366;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:.88rem;flex-shrink:0;transition:all .25s;
+}
+.app-wa-btn:hover{background:#1ebe5d;transform:translateY(-2px);}
+
+/* App Stats Row */
+.apps-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;}
+.ast{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:20px;text-align:center;
+  transition:all .3s;
+}
+.ast:hover{border-color:rgba(167,139,250,.25);transform:translateY(-3px);}
+.ast-n{font-family:'Syne',sans-serif;font-size:1.55rem;font-weight:800;color:var(--purple);}
+.ast-l{font-size:.58rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+
+/* ════════════════════════════════════════════
    PORTFOLIO SECTION
 ════════════════════════════════════════════ */
 #portfolio{
@@ -474,13 +673,15 @@ nav.scrolled{padding:12px 6%;background:rgba(5,5,16,.92);border-color:rgba(0,245
 .pc-url{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.06);border-radius:5px;padding:4px 10px;font-size:.5rem;color:rgba(255,255,255,.28);font-family:monospace;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
 .pc-screen{width:100%;height:180px;border-radius:10px 10px 0 0;overflow:hidden;position:relative;}
 .pc-sci{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;position:relative;}
-.pc-sci-tag{font-size:.48rem;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;position:relative;z-index:1;}
-.pc-sci-name{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:800;text-align:center;line-height:1.2;position:relative;z-index:1;}
-.pc-bars{width:72%;position:relative;z-index:1;}
+/* scanlines on project card screens */
+.pc-sci::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.04) 3px,rgba(0,0,0,.04) 6px);z-index:2;}
+.pc-sci-tag{font-size:.48rem;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;position:relative;z-index:3;}
+.pc-sci-name{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:800;text-align:center;line-height:1.2;position:relative;z-index:3;}
+.pc-bars{width:72%;position:relative;z-index:3;}
 .pc-bar{height:2.5px;border-radius:2px;margin:3px 0;}
 .pc-bar:nth-child(2){width:62%;opacity:.5;}
 .pc-bar:nth-child(3){width:42%;opacity:.26;}
-.pc-navs{display:flex;gap:5px;position:relative;z-index:1;margin-top:4px;}
+.pc-navs{display:flex;gap:5px;position:relative;z-index:3;margin-top:4px;}
 .pc-navi{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.62rem;}
 
 /* card body */
@@ -558,7 +759,9 @@ nav.scrolled{padding:12px 6%;background:rgba(5,5,16,.92);border-color:rgba(0,245
   margin-bottom:22px;font-family:'Syne',sans-serif;
   font-size:1.4rem;font-weight:800;
   border:1px solid rgba(255,255,255,.06);
+  position:relative;
 }
+.modal-screen::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.04) 3px,rgba(0,0,0,.04) 6px);}
 .modal-features{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px;}
 .modal-feat{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
 .modal-feat i{color:var(--teal);font-size:.8rem;flex-shrink:0;}
@@ -650,6 +853,8 @@ footer{
 /* ── RESPONSIVE ── */
 @media(max-width:1100px){
   .founder-inner{grid-template-columns:360px 1fr;gap:60px;}
+  .apps-showcase{grid-template-columns:1fr;}
+  .apps-stats{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-width:960px){
   .hero-inner{grid-template-columns:1fr;}.hero-right{display:none;}
@@ -664,6 +869,7 @@ footer{
   .port-stats{grid-template-columns:repeat(2,1fr);}
   .fl span{display:none;}.fl{max-width:46px!important;}
   .founder-achievements{grid-template-columns:1fr 1fr;}
+  .apps-stats{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-width:480px){
   .hero-stats{flex-direction:column;gap:0;}
@@ -671,6 +877,7 @@ footer{
   .hstat:last-child{border-bottom:none;}
   .modal-features{grid-template-columns:1fr;}
   .founder-achievements{grid-template-columns:1fr;}
+  .apps-stats{grid-template-columns:1fr 1fr;}
 }
 </style>
 </head>
@@ -684,7 +891,7 @@ footer{
 <!-- LOADER -->
 <div id="ldr">
   <div class="ldr-logo"><span class="t">TK</span> Web Solutions</div>
-  <div class="ldr-sub">Premium Portfolio</div>
+  <div class="ldr-sub">Premium Portfolio · Loading</div>
   <div class="ldr-wrap"><div class="ldr-bar" id="ldrBar"></div></div>
   <div class="ldr-pct" id="ldrPct">0%</div>
 </div>
@@ -692,7 +899,7 @@ footer{
 <!-- MODAL OVERLAY -->
 <div id="modal-overlay" onclick="closeModal(event)">
   <div class="modal" id="modal-box">
-    <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('open')"><i class="fas fa-times"></i></button>
+    <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('open');document.body.style.overflow=''"><i class="fas fa-times"></i></button>
     <div id="modal-content"></div>
   </div>
 </div>
@@ -706,6 +913,7 @@ footer{
   </div>
   <ul class="nlinks" id="nLinks">
     <li><a href="#portfolio">Work</a></li>
+    <li><a href="#apps">Apps</a></li>
     <li><a href="#founder">About</a></li>
     <li><a href="https://tkwebsolutions.in" target="_blank">Main Site</a></li>
     <li><a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!" target="_blank" class="ncta">Free Demo →</a></li>
@@ -714,6 +922,7 @@ footer{
 </nav>
 <div class="mobNav" id="mobNav">
   <a href="#portfolio" onclick="this.closest('.mobNav').classList.remove('open')">Work</a>
+  <a href="#apps" onclick="this.closest('.mobNav').classList.remove('open')">Apps</a>
   <a href="#founder" onclick="this.closest('.mobNav').classList.remove('open')">About</a>
   <a href="https://tkwebsolutions.in" target="_blank">Main Site</a>
   <a href="https://wa.me/919079368240" target="_blank" style="color:var(--teal);font-weight:700;">Free Demo →</a>
@@ -723,22 +932,24 @@ footer{
 <section id="hero">
   <div class="hero-mesh"></div>
   <div class="hero-grid"></div>
+  <div class="hero-vignette"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-tag"><div class="hero-dot"></div><span class="hero-tagtxt">Live Project Showcase — Bharatpur</span></div>
+      <div class="hero-tag"><div class="hero-dot"></div><span class="hero-tagtxt">Live Project Showcase — Bharatpur, Rajasthan</span></div>
       <h1 class="hero-h1">
         <span class="l1">Real Work,</span>
-        <span class="l2"><span id="tw-target">Real Results.</span><span class="tw-cur"></span></span>
-        <span class="l3">5 live websites · Real impact · Bharatpur, Rajasthan</span>
+        <span class="l2"><span class="glitch" data-text="Real Results." id="tw-target">Real Results.</span><span class="tw-cur"></span></span>
+        <span class="l3">5+ Live Websites · 2 Android Apps · Bharatpur</span>
       </h1>
-      <p class="hero-p">Har project ek story hai — coaching se lekar e-commerce tak, NGO se lekar government kendra tak. Yahan dekho hum ne kya banaya hai — aur aapke liye kya bana sakte hain.</p>
+      <p class="hero-p">Har project ek story hai — coaching se lekar e-commerce tak, NGO se lekar Android apps tak. Yahan dekho hum ne kya banaya hai — aur aapke liye kya bana sakte hain.</p>
       <div class="hero-btns">
-        <a href="#portfolio" class="btn-primary"><i class="fas fa-eye"></i> Kaam Dekho</a>
+        <a href="#portfolio" class="btn-primary"><i class="fas fa-eye"></i> Websites Dekho</a>
+        <a href="#apps" class="btn-primary" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);box-shadow:0 0 32px rgba(124,58,237,.3);"><i class="fab fa-android"></i> Apps Dekho</a>
         <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20Free%20demo%20chahiye." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Free Demo</a>
-        <a href="#founder" class="btn-ghost"><i class="fas fa-user"></i> Founder Story</a>
       </div>
       <div class="hero-stats">
-        <div class="hstat"><div class="hstat-n">5+</div><div class="hstat-l">Live Projects</div></div>
+        <div class="hstat"><div class="hstat-n">5+</div><div class="hstat-l">Live Websites</div></div>
+        <div class="hstat"><div class="hstat-n">2</div><div class="hstat-l">Android Apps</div></div>
         <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l">Satisfied</div></div>
         <div class="hstat"><div class="hstat-n">₹7K</div><div class="hstat-l">Se Shuru</div></div>
         <div class="hstat"><div class="hstat-n">7</div><div class="hstat-l">Din Delivery</div></div>
@@ -750,12 +961,12 @@ footer{
           <div class="device-notch"></div>
           <div class="device-screen">
             <div class="ds-logo">TK WEB</div>
-            <div class="ds-sub">5 Live Projects</div>
+            <div class="ds-sub">Websites + Apps</div>
             <div class="ds-bar" style="width:82%;background:linear-gradient(90deg,var(--teal),var(--purple));"></div>
             <div class="ds-bar"></div><div class="ds-bar"></div>
             <div class="ds-cards">
-              <div class="ds-card"><span>Projects</span><strong>5+</strong></div>
-              <div class="ds-card"><span>Rating</span><strong>5.0★</strong></div>
+              <div class="ds-card"><span>Websites</span><strong>5+</strong></div>
+              <div class="ds-card"><span>Apps</span><strong>2 📱</strong></div>
               <div class="ds-card"><span>Delivery</span><strong>7 Din</strong></div>
               <div class="ds-card"><span>From</span><strong>₹7K</strong></div>
             </div>
@@ -765,7 +976,7 @@ footer{
         <div class="fbadge fb1">
           <div class="fb1-dot"></div>
           <div class="fb1-lbl">Live Now</div>
-          <div class="fb1-val">5 Sites ✅</div>
+          <div class="fb1-val">5 Sites + 2 Apps ✅</div>
         </div>
         <div class="fbadge fb2">
           <div class="fb2-lbl">Client Rating</div>
@@ -786,24 +997,24 @@ footer{
   <div class="marquee-track">
     <div class="marquee-item"><i class="fas fa-shopping-bag"></i><span>E-Commerce Stores</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-graduation-cap"></i><span>Coaching Websites</span></div><span class="marquee-sep">·</span>
+    <div class="marquee-item"><i class="fab fa-android"></i><span>Android APK Apps</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-hands-helping"></i><span>NGO Websites</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-store"></i><span>Business Websites</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-landmark"></i><span>E-Mitra Websites</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-mobile-alt"></i><span>100% Mobile Friendly</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-bolt"></i><span>5-7 Din Delivery</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-rupee-sign"></i><span>Starting ₹7,000</span></div><span class="marquee-sep">·</span>
-    <div class="marquee-item"><i class="fas fa-shield-alt"></i><span>SSL Secured</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-search"></i><span>SEO Included</span></div><span class="marquee-sep">·</span>
-    <!-- duplicate for infinite scroll -->
+    <!-- duplicate -->
     <div class="marquee-item"><i class="fas fa-shopping-bag"></i><span>E-Commerce Stores</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-graduation-cap"></i><span>Coaching Websites</span></div><span class="marquee-sep">·</span>
+    <div class="marquee-item"><i class="fab fa-android"></i><span>Android APK Apps</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-hands-helping"></i><span>NGO Websites</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-store"></i><span>Business Websites</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-landmark"></i><span>E-Mitra Websites</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-mobile-alt"></i><span>100% Mobile Friendly</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-bolt"></i><span>5-7 Din Delivery</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-rupee-sign"></i><span>Starting ₹7,000</span></div><span class="marquee-sep">·</span>
-    <div class="marquee-item"><i class="fas fa-shield-alt"></i><span>SSL Secured</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-search"></i><span>SEO Included</span></div><span class="marquee-sep">·</span>
   </div>
 </div>
@@ -818,8 +1029,9 @@ footer{
       <div class="founder-photo-frame">
         <div class="founder-photo-ring"></div>
         <div class="founder-photo-box" id="founderPhotoBox">
-          <img src="https://tkwebsolutions.in/YOUR_PHOTO.jpg" alt="Tarun Singh" onerror="this.src='https://ui-avatars.com/api/?name=Tarun+Singh&size=400&background=00f5c8&color=050510&bold=true&font-size=0.4'">
-          <div class="photo-overlay"><span class="photo-overlay-txt">Tarun Singh · Founder</span></div>
+          <img src="https://tkwebsolutions.in/YOUR_PHOTO.jpg" alt="Tarun Singh — Founder TK Web Solutions"
+               onerror="this.src='https://ui-avatars.com/api/?name=Tarun+Singh&size=400&background=00f5c8&color=050510&bold=true&font-size=0.4'">
+          <div class="photo-overlay"><span class="photo-overlay-txt">Tarun Singh · Founder · Bharatpur</span></div>
         </div>
       </div>
 
@@ -827,11 +1039,20 @@ footer{
         <div class="fnb-avatar">TS</div>
         <div>
           <div class="fnb-name">Tarun Singh</div>
-          <div class="fnb-role">Founder & Web Developer · TK Web Solutions</div>
+          <div class="fnb-role">Founder & Developer · TK Web Solutions · Bharatpur</div>
         </div>
       </div>
 
-      <div class="skill-bars" id="skillBars">
+      <!-- Coding Activity Bars -->
+      <div class="founder-activity rv from-bottom">
+        <div class="fac-title"><i class="fas fa-code"></i> Coding Activity — 2025</div>
+        <div class="fac-bars" id="facBars">
+          <!-- bars injected by JS -->
+        </div>
+        <div class="fac-label">Mon → Sun · Weekly commits</div>
+      </div>
+
+      <div class="skill-bars" id="skillBars" style="margin-top:18px;">
         <div class="skill-item">
           <div class="skill-top"><span class="skill-name">HTML5 / CSS3</span><span class="skill-pct">95%</span></div>
           <div class="skill-track"><div class="skill-fill" data-width="95" style="background:linear-gradient(90deg,var(--teal),var(--purple));"></div></div>
@@ -841,6 +1062,10 @@ footer{
           <div class="skill-track"><div class="skill-fill" data-width="85" style="background:linear-gradient(90deg,var(--gold),var(--coral));"></div></div>
         </div>
         <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Android App Dev</span><span class="skill-pct">80%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="80" style="background:linear-gradient(90deg,#3ddc84,#00bcd4);"></div></div>
+        </div>
+        <div class="skill-item">
           <div class="skill-top"><span class="skill-name">UI/UX Design</span><span class="skill-pct">90%</span></div>
           <div class="skill-track"><div class="skill-fill" data-width="90" style="background:linear-gradient(90deg,var(--purple),var(--blue));"></div></div>
         </div>
@@ -848,18 +1073,14 @@ footer{
           <div class="skill-top"><span class="skill-name">SEO Optimization</span><span class="skill-pct">80%</span></div>
           <div class="skill-track"><div class="skill-fill" data-width="80" style="background:linear-gradient(90deg,var(--coral),var(--gold));"></div></div>
         </div>
-        <div class="skill-item">
-          <div class="skill-top"><span class="skill-name">Local Business Strategy</span><span class="skill-pct">92%</span></div>
-          <div class="skill-track"><div class="skill-fill" data-width="92" style="background:linear-gradient(90deg,var(--teal),var(--blue));"></div></div>
-        </div>
       </div>
 
       <div class="founder-socials">
-        <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="fsoc"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank" class="fsoc"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://wa.me/919079368240" target="_blank" class="fsoc"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="fsoc"><i class="fab fa-telegram"></i></a>
-        <a href="https://github.com/tarunsinghgunesh" target="_blank" class="fsoc"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="fsoc" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank" class="fsoc" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/919079368240" target="_blank" class="fsoc" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="fsoc" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://github.com/tarunsinghgunesh" target="_blank" class="fsoc" title="GitHub"><i class="fab fa-github"></i></a>
       </div>
     </div>
 
@@ -876,8 +1097,8 @@ footer{
         "Agar ruk gaya to kuch nahi hoga — aur agar try karta raha to kuch na kuch zaroor banega."
       </div>
       <p class="story-text">Har business ek chhoti si soch se start hota hai... aur meri journey bhi isi simple thought se shuru hui. <strong>Sach bolu to starting mein sab kuch mushkil tha.</strong> Coding samajhna easy nahi tha, errors baar baar aate the, aur kai baar laga ki shayad yeh mere bas ki baat nahi hai.</p>
-      <p class="story-text">Par phir ek cheez samajh aayi — <strong>mistakes se seekhna hi asli growth hai.</strong> Late nights, YouTube tutorials, aur khud se experiments karne se slowly confidence build hua. Har broken code ek naya lesson tha.</p>
-      <p class="story-text">Maine notice kiya ki <strong>Bharatpur ke bahut se local businesses achha kaam kar rahe hain</strong>, par online presence na hone ki wajah se unki growth ruki hui hai. Isi gap ko bharne ke liye TK Web Solutions ka idea aaya.</p>
+      <p class="story-text">Par phir ek cheez samajh aayi — <strong>mistakes se seekhna hi asli growth hai.</strong> Late nights, YouTube tutorials, aur khud se experiments karne se slowly confidence build hua. Websites se shuru ho ke Android apps tak pahuncha — har project ek naya chapter hai.</p>
+      <p class="story-text">Maine notice kiya ki <strong>Bharatpur ke bahut se local businesses achha kaam kar rahe hain</strong>, par online presence na hone ki wajah se unki growth ruki hui hai. Isi gap ko bharne ke liye TK Web Solutions ka idea aaya — websites, apps, SEO sab ek hi jagah.</p>
 
       <!-- Timeline -->
       <div class="story-timeline">
@@ -894,7 +1115,15 @@ footer{
           <div class="tl-content">
             <div class="tl-year">2024 — Idea</div>
             <div class="tl-title">TK Web Solutions Ka Janm</div>
-            <div class="tl-desc">Bharatpur ke local businesses ki zaroorat dekh ke agency start ki. Pehla real client — pehla real project.</div>
+            <div class="tl-desc">Bharatpur ke local businesses ki zaroorat dekh ke agency start ki. Pehla real client — pehla real project. JavaScript aur JS frameworks seekhe.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-icon"><i class="fab fa-android"></i></div>
+          <div class="tl-content">
+            <div class="tl-year">2025 — Expansion</div>
+            <div class="tl-title">Android App Development Shuru</div>
+            <div class="tl-desc">Android Studio seekha. TK Web Solutions app aur EduPrime app banaya. WebView architecture, UPI payments, client portal — sab ek hi app mein.</div>
           </div>
         </div>
         <div class="tl-item">
@@ -909,8 +1138,8 @@ footer{
           <div class="tl-icon"><i class="fas fa-star"></i></div>
           <div class="tl-content">
             <div class="tl-year">2026 — Now</div>
-            <div class="tl-title">AI-Powered, SEO-First Approach</div>
-            <div class="tl-desc">Google AI Mode optimization, advanced chatbots, aur premium designs ke saath Rajasthan ka best web agency banne ki journey.</div>
+            <div class="tl-title">AI-Powered, Full-Stack Approach</div>
+            <div class="tl-desc">Google AI Mode optimization, Android apps, advanced chatbots, aur premium designs ke saath Rajasthan ka best web agency banne ki journey.</div>
           </div>
         </div>
       </div>
@@ -923,9 +1152,9 @@ footer{
           <div class="ach-lbl">Live Websites Delivered</div>
         </div>
         <div class="ach-card">
-          <div class="ach-icon">⭐</div>
-          <div class="ach-val">5.0</div>
-          <div class="ach-lbl">Average Client Rating</div>
+          <div class="ach-icon">📱</div>
+          <div class="ach-val">2</div>
+          <div class="ach-lbl">Android Apps Built</div>
         </div>
         <div class="ach-card">
           <div class="ach-icon">⚡</div>
@@ -942,19 +1171,234 @@ footer{
   </div>
 </section>
 
+<!-- ════ APP SHOWCASE ════ -->
+<section id="apps">
+  <div class="apps-bg"></div>
+  <div class="apps-grid-bg"></div>
+  <div class="apps-inner">
+    <div class="rv from-bottom" style="margin-bottom:0;">
+      <div class="sec-tag"><div class="sec-tagline" style="background:var(--purple);"></div><span class="sec-tagtxt" style="color:var(--purple);">Android Apps</span></div>
+      <div class="apps-header">
+        <div class="apps-header-left">
+          <h2 class="sec-h">Maine Banaye Hain<br><span style="color:var(--purple)">2 Android Apps</span> — Real!</h2>
+          <p style="color:var(--muted);font-size:.94rem;max-width:460px;line-height:1.85;margin-top:10px;">Sirf websites nahi — poore Android apps bhi banate hain. APK seedha WhatsApp pe share karo, koi Play Store ki zaroorat nahi.</p>
+          <div class="app-platform-badges">
+            <span class="apb android"><i class="fab fa-android"></i> Android 5.0+</span>
+            <span class="apb web"><i class="fas fa-globe"></i> WebView Tech</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="apps-showcase rv from-bottom">
+
+      <!-- APP 1: TK Web Solutions App -->
+      <div class="app-card" style="--app-glow:rgba(0,245,200,.12);">
+        <div class="app-card-header">
+          <div class="app-icon-wrap" style="background:linear-gradient(135deg,#050510,#0d1f3c);">
+            <span>🌐</span>
+          </div>
+          <div class="app-info">
+            <div class="app-name">TK Web Solutions</div>
+            <div class="app-ver">v2.0 · APK · ~8MB</div>
+            <span class="app-platform-tag" style="background:rgba(0,245,200,.1);border:1px solid rgba(0,245,200,.25);color:var(--teal);"><i class="fab fa-android"></i> Android App</span>
+          </div>
+        </div>
+
+        <div class="app-phone-area">
+          <!-- Phone 1 -->
+          <div class="app-phone">
+            <div class="app-phone-notch"></div>
+            <div class="app-phone-screen">
+              <!-- Home screen mockup -->
+              <div style="background:linear-gradient(160deg,#050510,#0d1f3c);width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;position:relative;">
+                <div style="position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,245,200,.018) 2px,rgba(0,245,200,.018) 4px);z-index:1;"></div>
+                <div style="position:relative;z-index:2;text-align:center;">
+                  <div style="font-family:'Syne',sans-serif;font-size:.7rem;font-weight:800;color:var(--teal);letter-spacing:2px;">TK WEB</div>
+                  <div style="font-size:.3rem;color:rgba(255,255,255,.3);letter-spacing:1px;">SOLUTIONS</div>
+                </div>
+                <div style="width:80%;height:1.5px;background:linear-gradient(90deg,transparent,var(--teal),transparent);position:relative;z-index:2;"></div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;width:90%;position:relative;z-index:2;">
+                  <div style="background:rgba(0,245,200,.08);border:1px solid rgba(0,245,200,.15);border-radius:6px;padding:5px;text-align:center;">
+                    <div style="font-size:.28rem;color:rgba(255,255,255,.4);">Services</div>
+                    <div style="font-size:.45rem;font-weight:700;color:var(--teal);">✓</div>
+                  </div>
+                  <div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.15);border-radius:6px;padding:5px;text-align:center;">
+                    <div style="font-size:.28rem;color:rgba(255,255,255,.4);">Dashboard</div>
+                    <div style="font-size:.45rem;font-weight:700;color:var(--purple);">👤</div>
+                  </div>
+                  <div style="background:rgba(255,193,59,.08);border:1px solid rgba(255,193,59,.15);border-radius:6px;padding:5px;text-align:center;">
+                    <div style="font-size:.28rem;color:rgba(255,255,255,.4);">UPI Pay</div>
+                    <div style="font-size:.45rem;font-weight:700;color:var(--gold);">₹</div>
+                  </div>
+                  <div style="background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.15);border-radius:6px;padding:5px;text-align:center;">
+                    <div style="font-size:.28rem;color:rgba(255,255,255,.4);">WhatsApp</div>
+                    <div style="font-size:.45rem;font-weight:700;color:#25d366;">💬</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="app-phone-bar"></div>
+          </div>
+          <!-- Phone 2 - dashboard screen -->
+          <div class="app-phone" style="transform:rotate(3deg) translateY(10px);">
+            <div class="app-phone-notch"></div>
+            <div class="app-phone-screen">
+              <div style="background:linear-gradient(160deg,#080820,#1a0040);width:100%;height:100%;display:flex;flex-direction:column;gap:5px;padding:8px;position:relative;">
+                <div style="position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(167,139,250,.018) 2px,rgba(167,139,250,.018) 4px);z-index:1;"></div>
+                <div style="font-size:.32rem;color:var(--purple);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;position:relative;z-index:2;">Owner Dashboard</div>
+                <div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.2);border-radius:6px;padding:5px;position:relative;z-index:2;">
+                  <div style="font-size:.28rem;color:rgba(255,255,255,.4);">Active Clients</div>
+                  <div style="font-size:.55rem;font-weight:800;color:var(--purple);">12</div>
+                </div>
+                <div style="background:rgba(0,245,200,.1);border:1px solid rgba(0,245,200,.2);border-radius:6px;padding:5px;position:relative;z-index:2;">
+                  <div style="font-size:.28rem;color:rgba(255,255,255,.4);">Revenue</div>
+                  <div style="font-size:.5rem;font-weight:800;color:var(--teal);">₹85K</div>
+                </div>
+                <div style="background:rgba(255,193,59,.08);border:1px solid rgba(255,193,59,.15);border-radius:6px;padding:5px;position:relative;z-index:2;">
+                  <div style="font-size:.28rem;color:rgba(255,255,255,.4);">Notifications</div>
+                  <div style="font-size:.4rem;color:var(--gold);">3 new emails 📧</div>
+                </div>
+              </div>
+            </div>
+            <div class="app-phone-bar"></div>
+          </div>
+        </div>
+
+        <div class="app-desc">
+          <p class="app-desc-text">TK Web Solutions ka official Android app — services showcase, UPI/Custom payment flow, EmailJS notifications, <strong style="color:var(--white);">Owner Dashboard</strong> aur <strong style="color:var(--white);">Client Portal</strong> — sab ek hi app mein. Android Studio + WebView architecture.</p>
+          <div class="app-features">
+            <span class="app-feat">📱 Android 5.0+</span>
+            <span class="app-feat">💳 UPI Payment</span>
+            <span class="app-feat">📧 EmailJS</span>
+            <span class="app-feat">👤 Owner Dashboard</span>
+            <span class="app-feat">🔒 Client Portal</span>
+            <span class="app-feat">🌐 WebView</span>
+            <span class="app-feat">📲 WhatsApp Share</span>
+          </div>
+          <div class="app-cta-row">
+            <a href="https://tkwebsolutions.in/app/TKWebSolutions.apk" class="app-dl-btn" style="background:linear-gradient(135deg,var(--teal),var(--purple));color:var(--bg);">
+              <i class="fas fa-download"></i> APK Download Karo
+            </a>
+            <a href="https://wa.me/919079368240?text=Hi!%20TK%20Web%20Solutions%20app%20ke%20baare%20mein%20baat%20karni%20hai." target="_blank" class="app-wa-btn"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- APP 2: EduPrime -->
+      <div class="app-card" style="--app-glow:rgba(255,193,59,.1);">
+        <div class="app-card-header">
+          <div class="app-icon-wrap" style="background:linear-gradient(135deg,#1a0900,#3e1800);">
+            <span>🎓</span>
+          </div>
+          <div class="app-info">
+            <div class="app-name">EduPrime</div>
+            <div class="app-ver">v1.0 · APK · ~6MB</div>
+            <span class="app-platform-tag" style="background:rgba(255,193,59,.1);border:1px solid rgba(255,193,59,.25);color:var(--gold);"><i class="fas fa-graduation-cap"></i> Coaching App</span>
+          </div>
+        </div>
+
+        <div class="app-phone-area">
+          <!-- Phone 1 - course screen -->
+          <div class="app-phone">
+            <div class="app-phone-notch"></div>
+            <div class="app-phone-screen">
+              <div style="background:linear-gradient(160deg,#0d0900,#2d1600);width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:8px;position:relative;">
+                <div style="position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,193,59,.018) 2px,rgba(255,193,59,.018) 4px);z-index:1;"></div>
+                <div style="position:relative;z-index:2;text-align:center;">
+                  <div style="font-family:'Syne',sans-serif;font-size:.65rem;font-weight:800;color:var(--gold);">EduPrime</div>
+                  <div style="font-size:.28rem;color:rgba(255,255,255,.3);letter-spacing:1px;">Smart Learning App</div>
+                </div>
+                <div style="width:80%;height:1.5px;background:linear-gradient(90deg,transparent,var(--gold),transparent);position:relative;z-index:2;"></div>
+                <div style="display:flex;flex-direction:column;gap:3px;width:90%;position:relative;z-index:2;">
+                  <div style="background:rgba(255,193,59,.12);border:1px solid rgba(255,193,59,.2);border-radius:5px;padding:4px 6px;display:flex;gap:4px;align-items:center;">
+                    <span style="font-size:.4rem;">📚</span>
+                    <div style="font-size:.28rem;color:rgba(255,255,255,.6);">IIT-JEE Batch</div>
+                  </div>
+                  <div style="background:rgba(255,77,109,.1);border:1px solid rgba(255,77,109,.2);border-radius:5px;padding:4px 6px;display:flex;gap:4px;align-items:center;">
+                    <span style="font-size:.4rem;">🏥</span>
+                    <div style="font-size:.28rem;color:rgba(255,255,255,.6);">NEET Batch</div>
+                  </div>
+                  <div style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);border-radius:5px;padding:4px 6px;display:flex;gap:4px;align-items:center;">
+                    <span style="font-size:.4rem;">🎖️</span>
+                    <div style="font-size:.28rem;color:rgba(255,255,255,.6);">NDA Batch</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="app-phone-bar"></div>
+          </div>
+          <!-- Phone 2 - results screen -->
+          <div class="app-phone" style="transform:rotate(3deg) translateY(10px);">
+            <div class="app-phone-notch"></div>
+            <div class="app-phone-screen">
+              <div style="background:linear-gradient(160deg,#0d0600,#1f0e00);width:100%;height:100%;display:flex;flex-direction:column;gap:4px;padding:8px;position:relative;">
+                <div style="position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,193,59,.018) 2px,rgba(255,193,59,.018) 4px);z-index:1;"></div>
+                <div style="font-size:.3rem;color:var(--gold);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;position:relative;z-index:2;">Results & Batches</div>
+                <div style="background:rgba(255,193,59,.1);border:1px solid rgba(255,193,59,.2);border-radius:5px;padding:5px;position:relative;z-index:2;">
+                  <div style="font-size:.26rem;color:rgba(255,255,255,.4);">Topper</div>
+                  <div style="font-size:.44rem;font-weight:800;color:var(--gold);">Ravi Kumar — AIR 42</div>
+                </div>
+                <div style="background:rgba(0,245,200,.08);border:1px solid rgba(0,245,200,.15);border-radius:5px;padding:5px;position:relative;z-index:2;">
+                  <div style="font-size:.26rem;color:rgba(255,255,255,.4);">Fee Structure</div>
+                  <div style="font-size:.38rem;color:var(--teal);">₹12,000 / semester</div>
+                </div>
+                <div style="background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.15);border-radius:5px;padding:5px;position:relative;z-index:2;">
+                  <div style="font-size:.26rem;color:rgba(255,255,255,.4);">Inquiry</div>
+                  <div style="font-size:.38rem;color:#25d366;">WhatsApp Now →</div>
+                </div>
+              </div>
+            </div>
+            <div class="app-phone-bar"></div>
+          </div>
+        </div>
+
+        <div class="app-desc">
+          <p class="app-desc-text">EduPrime — coaching institute ke liye complete Android app. Batches, results, fee structure, faculty profiles, aur <strong style="color:var(--white);">WhatsApp inquiry</strong> sab directly app se. Seedha APK share karo students ko.</p>
+          <div class="app-features">
+            <span class="app-feat">📚 Batch Schedule</span>
+            <span class="app-feat">🏆 Results</span>
+            <span class="app-feat">💰 Fee Structure</span>
+            <span class="app-feat">👨‍🏫 Faculty</span>
+            <span class="app-feat">📝 Inquiry Form</span>
+            <span class="app-feat">💬 WhatsApp</span>
+            <span class="app-feat">📱 Direct APK</span>
+          </div>
+          <div class="app-cta-row">
+            <a href="https://tkwebsolutions.in/app/EduPrime.apk" class="app-dl-btn" style="background:linear-gradient(135deg,var(--gold),var(--coral));color:#0a0a0a;">
+              <i class="fas fa-download"></i> APK Download Karo
+            </a>
+            <a href="https://wa.me/919079368240?text=Hi!%20Coaching%20institute%20ke%20liye%20app%20chahiye%20EduPrime%20jaisi." target="_blank" class="app-wa-btn"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /apps-showcase -->
+
+    <!-- App Stats -->
+    <div class="apps-stats rv from-bottom">
+      <div class="ast"><div class="ast-n">2</div><div class="ast-l">Apps Built</div></div>
+      <div class="ast"><div class="ast-n">Android</div><div class="ast-l" style="font-size:.52rem;">Studio + WebView</div></div>
+      <div class="ast"><div class="ast-n">APK</div><div class="ast-l">Direct Download</div></div>
+      <div class="ast"><div class="ast-n">₹10K</div><div class="ast-l">Se App Banta Hai</div></div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ════ PORTFOLIO ════ -->
 <section id="portfolio">
   <div class="port-glow"></div>
   <div class="port-inner">
     <div class="rv from-bottom">
       <div class="sec-tag"><div class="sec-tagline"></div><span class="sec-tagtxt">Live Projects</span></div>
-      <h2 class="sec-h">5 Live <span style="color:var(--teal)">Websites</span><br>— Real Work</h2>
+      <h2 class="sec-h">5 Live <span style="color:var(--teal)">Websites</span><br>— Real Work, Real Clients</h2>
       <p class="sec-p">5 alag industries, 5 alag challenges. Har website ek business ki digital identity hai jo 24/7 kaam karti hai.</p>
     </div>
 
     <div class="port-stats rv from-bottom">
-      <div class="pstat"><div class="pstat-n">5+</div><div class="pstat-l">Projects Live</div></div>
-      <div class="pstat"><div class="pstat-n">100%</div><div class="pstat-l">Client Happy</div></div>
+      <div class="pstat"><div class="pstat-n">5+</div><div class="pstat-l">Websites Live</div></div>
+      <div class="pstat"><div class="pstat-n">2</div><div class="pstat-l">Apps Built</div></div>
       <div class="pstat"><div class="pstat-n">5</div><div class="pstat-l">Industries</div></div>
       <div class="pstat"><div class="pstat-n">7</div><div class="pstat-l">Din Delivery</div></div>
       <div class="pstat"><div class="pstat-n">₹7K</div><div class="pstat-l">Se Shuru</div></div>
@@ -972,8 +1416,7 @@ footer{
     <div class="cards-grid" id="cgrid">
 
       <!-- CARD 1: CHIRAG HANDLOOMS -->
-      <div class="pcard" data-cat="ecommerce" style="--gc:rgba(255,152,0,.14);"
-           onclick="openModal('chirag')">
+      <div class="pcard" data-cat="ecommerce" style="--gc:rgba(255,152,0,.14);" onclick="openModal('chirag')">
         <div class="pcinner">
           <div class="pc-strip" style="background:linear-gradient(90deg,#ff9800,#ff5722,#e91e63);"></div>
           <div class="pc-badge" style="background:var(--coral);color:#fff;">🆕 Newest</div>
@@ -1010,8 +1453,7 @@ footer{
       </div>
 
       <!-- CARD 2: ACHIEVERS POINT -->
-      <div class="pcard" data-cat="coaching" style="--gc:rgba(33,150,243,.14);"
-           onclick="openModal('achievers')">
+      <div class="pcard" data-cat="coaching" style="--gc:rgba(33,150,243,.14);" onclick="openModal('achievers')">
         <div class="pcinner">
           <div class="pc-strip" style="background:linear-gradient(90deg,#1565c0,#42a5f5,#1565c0);"></div>
           <div class="pc-badge" style="background:var(--gold);color:#0a0a0a;">⭐ Featured</div>
@@ -1048,8 +1490,7 @@ footer{
       </div>
 
       <!-- CARD 3: EK PAHAL INDIA -->
-      <div class="pcard" data-cat="ngo" style="--gc:rgba(6,214,160,.1);"
-           onclick="openModal('ekpahal')">
+      <div class="pcard" data-cat="ngo" style="--gc:rgba(6,214,160,.1);" onclick="openModal('ekpahal')">
         <div class="pcinner">
           <div class="pc-strip" style="background:linear-gradient(90deg,#2e7d32,#66bb6a,#2e7d32);"></div>
           <div class="pc-live-lbl">✨ LIVE WEBSITE</div>
@@ -1085,8 +1526,7 @@ footer{
       </div>
 
       <!-- CARD 4: SUPPORT SMALL BUSINESS -->
-      <div class="pcard" data-cat="business" style="--gc:rgba(255,77,109,.1);"
-           onclick="openModal('ssb')">
+      <div class="pcard" data-cat="business" style="--gc:rgba(255,77,109,.1);" onclick="openModal('ssb')">
         <div class="pcinner">
           <div class="pc-strip" style="background:linear-gradient(90deg,#bf360c,#ff7043,#bf360c);"></div>
           <div class="pc-live-lbl">✨ LIVE WEBSITE</div>
@@ -1122,8 +1562,7 @@ footer{
       </div>
 
       <!-- CARD 5: DHRUV E-MITRA -->
-      <div class="pcard" data-cat="emitra" style="--gc:rgba(34,158,217,.12);"
-           onclick="openModal('emitra')">
+      <div class="pcard" data-cat="emitra" style="--gc:rgba(34,158,217,.12);" onclick="openModal('emitra')">
         <div class="pcinner">
           <div class="pc-strip" style="background:linear-gradient(90deg,#1a237e,#3f51b5,#1a237e);"></div>
           <div class="pc-live-lbl">✨ LIVE WEBSITE</div>
@@ -1172,15 +1611,15 @@ footer{
   <div class="cta-bg"></div>
   <div class="cta-grid"></div>
   <div class="cta-box rv from-bottom">
-    <div class="cta-badge"><div class="cta-badge-dot"></div><p>🔥 <strong style="color:var(--white);">Abhi Sirf 3 Slots Baaki Hain!</strong></p></div>
-    <h2 class="cta-h">Aapki Website Bhi<br>Yahan Ho Sakti Hai — <span>Free Demo Lo!</span></h2>
-    <p class="cta-p">Upar dekhe sabhi 5 websites 5–7 din mein deliver ki hain. Coaching, business, NGO, e-commerce, ya kuch aur — sab banate hain. Starting ₹7,000 se — koi hidden charge nahi!</p>
+    <div class="cta-badge"><div class="cta-badge-dot"></div><p>🔥 <strong style="color:var(--white);">Websites + Apps — Sab Banate Hain!</strong></p></div>
+    <h2 class="cta-h">Aapki Website Ya App Bhi<br>Yahan Ho Sakti Hai — <span>Free Demo Lo!</span></h2>
+    <p class="cta-p">Upar dekhe 5 websites aur 2 Android apps — sab real, sab live. Coaching, business, NGO, e-commerce, ya kuch aur — website se lekar Play Store app tak. Starting ₹7,000 se!</p>
     <div class="cta-btns">
       <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20Free%20demo%20chahiye!" target="_blank" class="btn-wa" style="padding:16px 36px;font-size:.95rem;"><i class="fab fa-whatsapp"></i> WhatsApp — Free Demo!</a>
       <a href="tel:+919079368240" class="btn-primary" style="padding:16px 30px;font-size:.95rem;"><i class="fas fa-phone"></i> Call: 90793 68240</a>
     </div>
     <div class="cta-trust">
-      <div class="cta-trust-item"><i class="fas fa-check-circle"></i><span>Koi hidden charge nahi</span></div>
+      <div class="cta-trust-item"><i class="fas fa-check-circle"></i><span>Websites + Apps</span></div>
       <div class="cta-trust-item"><i class="fas fa-check-circle"></i><span>5–7 din delivery</span></div>
       <div class="cta-trust-item"><i class="fas fa-check-circle"></i><span>30 din free support</span></div>
       <div class="cta-trust-item"><i class="fas fa-check-circle"></i><span>100% mobile friendly</span></div>
@@ -1193,7 +1632,7 @@ footer{
   <div class="ft-top">
     <div>
       <div class="ft-brand-name"><span class="t">TK</span> Web Solutions</div>
-      <p class="ft-brand-p">Premium web design — coaching, e-commerce, business, NGO aur E-Mitra websites. Bharatpur, Rajasthan.</p>
+      <p class="ft-brand-p">Premium web & app development — websites, Android apps, coaching, e-commerce, NGO aur E-Mitra. Bharatpur, Rajasthan.</p>
       <a href="tel:+919079368240" class="ft-tel"><i class="fas fa-phone"></i> +91 90793 68240</a>
       <div class="ft-socs">
         <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="ft-soc"><i class="fab fa-instagram"></i></a>
@@ -1213,13 +1652,13 @@ footer{
       </ul>
     </div>
     <div class="ft-col">
-      <h4>Services</h4>
+      <h4>Apps & Services</h4>
       <ul>
+        <li><a href="https://tkwebsolutions.in/app/TKWebSolutions.apk">📱 TK Web Solutions App</a></li>
+        <li><a href="https://tkwebsolutions.in/app/EduPrime.apk">🎓 EduPrime App</a></li>
         <li><a href="https://tkwebsolutions.in/#services">E-Commerce Store</a></li>
         <li><a href="https://tkwebsolutions.in/#services">Coaching Website</a></li>
-        <li><a href="https://tkwebsolutions.in/#services">Business Website</a></li>
-        <li><a href="https://tkwebsolutions.in/#services">NGO Website</a></li>
-        <li><a href="https://tkwebsolutions.in/#services">E-Mitra Website</a></li>
+        <li><a href="https://tkwebsolutions.in/#services">Android App</a></li>
       </ul>
     </div>
     <div class="ft-col">
@@ -1249,43 +1688,23 @@ footer{
 <button class="stbtn" id="stbtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
 
 <script>
-/* ══ PROJECT DATA FOR MODAL ══ */
+/* ══ PROJECT DATA ══ */
 var projects={
-  chirag:{
-    tag:'E-Commerce Store',title:'Chirag Handlooms',sub:'Premium Handwoven Fabrics · Est. 1994 · Bharatpur',
-    bg:'linear-gradient(135deg,#1a0900,#5a2800)',color:'#ffb74d',
+  chirag:{tag:'E-Commerce Store',title:'Chirag Handlooms',sub:'Premium Handwoven Fabrics · Est. 1994 · Bharatpur',bg:'linear-gradient(135deg,#1a0900,#5a2800)',color:'#ffb74d',
     features:['WhatsApp Ordering System','8 Product Categories','Custom Order Form','Bulk Wholesale Section','Mobile Responsive','Fast Loading'],
-    url:'https://tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/',
-    wa:'Hi!%20Chirag%20Handlooms%20jaisi%20E-Commerce%20website%20chahiye.'
-  },
-  achievers:{
-    tag:'Coaching Institute',title:'Achievers Point',sub:'IIT-JEE · NEET · NDA Coaching · Bharatpur',
-    bg:'linear-gradient(135deg,#0a1628,#1565c0)',color:'#64b5f6',
+    url:'https://tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/',wa:'Hi!%20Chirag%20Handlooms%20jaisi%20E-Commerce%20website%20chahiye.'},
+  achievers:{tag:'Coaching Institute',title:'Achievers Point',sub:'IIT-JEE · NEET · NDA Coaching · Bharatpur',bg:'linear-gradient(135deg,#0a1628,#1565c0)',color:'#64b5f6',
     features:['Batch Schedule & Timings','Results Showcase','Fee Structure Table','Faculty Profiles','Student Inquiry Form','Google Maps Integration'],
-    url:'https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/',
-    wa:'Hi!%20Coaching%20website%20chahiye.'
-  },
-  ekpahal:{
-    tag:'NGO / Non-Profit',title:'Ek Pahal India',sub:'Student Support NGO · Helping Communities',
-    bg:'linear-gradient(135deg,#0a1f0f,#1b5e20)',color:'#81c784',
+    url:'https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/',wa:'Hi!%20Coaching%20website%20chahiye.'},
+  ekpahal:{tag:'NGO / Non-Profit',title:'Ek Pahal India',sub:'Student Support NGO · Helping Communities',bg:'linear-gradient(135deg,#0a1f0f,#1b5e20)',color:'#81c784',
     features:['Mission & Vision Pages','Volunteer Registration','Donation Section','Impact Stories','Photo Gallery','Social Media Links'],
-    url:'https://tarunsinghgunesh.github.io/ekpahalindia/',
-    wa:'Hi!%20NGO%20website%20chahiye.'
-  },
-  ssb:{
-    tag:'Local Business',title:'Support Small Business',sub:'Local Business Promotion Platform · Bharatpur',
-    bg:'linear-gradient(135deg,#1a0a00,#bf360c)',color:'#ff8a65',
+    url:'https://tarunsinghgunesh.github.io/ekpahalindia/',wa:'Hi!%20NGO%20website%20chahiye.'},
+  ssb:{tag:'Local Business',title:'Support Small Business',sub:'Local Business Promotion Platform · Bharatpur',bg:'linear-gradient(135deg,#1a0a00,#bf360c)',color:'#ff8a65',
     features:['Services Showcase','WhatsApp Ordering','Google Maps Integration','Business Listings','Community Focus','Mobile First Design'],
-    url:'https://tarunsinghgunesh.github.io/support_small_business/',
-    wa:'Hi!%20Business%20website%20chahiye.'
-  },
-  emitra:{
-    tag:'E-Mitra / Govt Services',title:'Dhruv E-Mitra Kendra',sub:'Government Services Portal · E-Mitra Seva Kendra',
-    bg:'linear-gradient(135deg,#0a0f2e,#1a237e)',color:'#90caf9',
+    url:'https://tarunsinghgunesh.github.io/support_small_business/',wa:'Hi!%20Business%20website%20chahiye.'},
+  emitra:{tag:'E-Mitra / Govt Services',title:'Dhruv E-Mitra Kendra',sub:'Government Services Portal · E-Mitra Seva Kendra',bg:'linear-gradient(135deg,#0a0f2e,#1a237e)',color:'#90caf9',
     features:['Government Services List','UPI QR Code Payment','Application Status Checker','Service Calculator','Contact & Location','Mobile Responsive'],
-    url:'https://tarunsinghgunesh.github.io/dhruvemitrasevakendra/',
-    wa:'Hi!%20E-Mitra%20website%20chahiye.'
-  }
+    url:'https://tarunsinghgunesh.github.io/dhruvemitrasevakendra/',wa:'Hi!%20E-Mitra%20website%20chahiye.'}
 };
 
 function openModal(id){
@@ -1296,7 +1715,7 @@ function openModal(id){
     '<div class="modal-title">'+p.title+'</div>'+
     '<div class="modal-sub">'+p.sub+'</div>'+
     '<div class="modal-screen" style="background:'+p.bg+';">'+
-      '<span style="color:'+p.color+';font-family:Syne,sans-serif;">'+p.title+'</span>'+
+      '<span style="color:'+p.color+';font-family:Syne,sans-serif;font-size:1.4rem;font-weight:800;">'+p.title+'</span>'+
     '</div>'+
     '<div class="modal-features">'+feats+'</div>'+
     '<div class="modal-btns">'+
@@ -1330,7 +1749,7 @@ var mx=0,my=0,rx=0,ry=0;
 if(c){
   document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});
   (function lp(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(lp);})();
-  document.querySelectorAll('a,button,.pcard,.pstat,.ach-card,.ftab').forEach(function(el){
+  document.querySelectorAll('a,button,.pcard,.pstat,.ach-card,.ftab,.app-card,.ast').forEach(function(el){
     el.addEventListener('mouseenter',function(){c.classList.add('hov');r.classList.add('hov');});
     el.addEventListener('mouseleave',function(){c.classList.remove('hov');r.classList.remove('hov');});
   });
@@ -1340,7 +1759,7 @@ if(c){
 var cv=document.getElementById('cvs'),ctx=cv?cv.getContext('2d'):null,pts=[];
 if(ctx){
   function rsz(){cv.width=innerWidth;cv.height=innerHeight;}rsz();addEventListener('resize',rsz);
-  for(var i=0;i<70;i++)pts.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:Math.random()*.85+.25,a:Math.random()*.25+.04,c:Math.random()>.62?'255,77,109':'0,245,200'});
+  for(var i=0;i<70;i++)pts.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:Math.random()*.85+.25,a:Math.random()*.25+.04,c:Math.random()>.62?'255,77,109':Math.random()>.5?'167,139,250':'0,245,200'});
   (function draw(){
     ctx.clearRect(0,0,cv.width,cv.height);
     for(var i=0;i<pts.length;i++){for(var j=i+1;j<pts.length;j++){var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<95){ctx.beginPath();ctx.strokeStyle='rgba(0,245,200,'+(0.025*(1-d/95))+')';ctx.lineWidth=.35;ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke();}}}
@@ -1363,12 +1782,13 @@ document.getElementById('hbgBtn').addEventListener('click',function(){document.g
 /* ══ TYPEWRITER ══ */
 (function(){
   var el=document.getElementById('tw-target');if(!el)return;
-  var words=['Real Results.','Your Success.','Digital Reality.','Premium Work.','Bharatpur Ka Naam.'];
+  var words=['Real Results.','Apps & Websites.','Digital Reality.','Premium Work.','Bharatpur Ka Naam.','Android + Web Dev.'];
   var wi=0,ci=0,del=false;
+  var origText=words[0];
   function type(){
     var w=words[wi];
-    if(!del){el.textContent=w.substring(0,ci+1);ci++;if(ci===w.length){del=true;setTimeout(type,2200);return;}}
-    else{el.textContent=w.substring(0,ci-1);ci--;if(ci===0){del=false;wi=(wi+1)%words.length;setTimeout(type,350);return;}}
+    if(!del){el.textContent=w.substring(0,ci+1);el.setAttribute('data-text',el.textContent);ci++;if(ci===w.length){del=true;setTimeout(type,2200);return;}}
+    else{el.textContent=w.substring(0,ci-1);el.setAttribute('data-text',el.textContent);ci--;if(ci===0){del=false;wi=(wi+1)%words.length;setTimeout(type,350);return;}}
     setTimeout(type,del?42:82);
   }
   setTimeout(type,1400);
@@ -1392,6 +1812,20 @@ var skillO=new IntersectionObserver(function(en){
 },{threshold:.3});
 var sb=document.getElementById('skillBars');
 if(sb)skillO.observe(sb);
+
+/* ══ CODING ACTIVITY BARS ══ */
+(function(){
+  var container=document.getElementById('facBars');
+  if(!container)return;
+  var heights=[55,70,40,85,60,90,50,75,65,80,45,88,72,58,92,38,68,82,48,76,62,84,55,70,90,45,78,66];
+  heights.forEach(function(h,i){
+    var bar=document.createElement('div');
+    bar.className='fac-bar';
+    bar.style.height=h+'%';
+    bar.style.animationDelay=(i*0.04)+'s';
+    container.appendChild(bar);
+  });
+})();
 
 /* ══ 3D CARD REVEAL + TILT ══ */
 var pcO=new IntersectionObserver(function(en){
@@ -1418,6 +1852,21 @@ document.querySelectorAll('.pcard').forEach(function(card){
     var inner=card.querySelector('.pcinner');
     inner.style.transform='rotateY(0) rotateX(0) translateZ(0) scale(1)';
     inner.style.transition='transform .55s cubic-bezier(.23,1,.32,1)';
+  });
+});
+
+/* ══ APP CARD 3D TILT ══ */
+document.querySelectorAll('.app-card').forEach(function(card){
+  card.addEventListener('mousemove',function(e){
+    var rect=card.getBoundingClientRect();
+    var x=(e.clientX-rect.left-rect.width/2)/(rect.width/2);
+    var y=(e.clientY-rect.top-rect.height/2)/(rect.height/2);
+    card.style.transform='translateY(-8px) rotateY('+(x*4)+'deg) rotateX('+(-y*3)+'deg)';
+    card.style.transition='transform .06s';
+  });
+  card.addEventListener('mouseleave',function(){
+    card.style.transform='translateY(0) rotateY(0) rotateX(0)';
+    card.style.transition='transform .5s cubic-bezier(.23,1,.32,1)';
   });
 });
 
@@ -1459,7 +1908,7 @@ function filterP(cat,btn){
   });
 }
 
-/* ══ ESC KEY MODAL CLOSE ══ */
+/* ══ ESC KEY ══ */
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){
     document.getElementById('modal-overlay').classList.remove('open');
