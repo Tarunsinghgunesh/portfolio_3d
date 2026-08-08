@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Tarun Singh — TK Web Solutions | Premium 3D Portfolio</title>
 <meta name="description" content="Tarun Singh — Founder of TK Web Solutions, Bharatpur. Premium web & app development portfolio — websites, Android apps, coaching, NGO, business & e-commerce.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Cabinet+Grotesk:wght@300;400;500;700;800;900&display=optional" rel="stylesheet">
@@ -289,6 +292,43 @@ nav.scrolled{padding:12px 6%;background:rgba(5,5,16,.92);border-color:rgba(0,245
 .hero-right{animation:fadeLeft .8s .2s ease both;}
 
 /* ════════════════════════════════════════════
+   DIGITAL JOURNEY — SCROLL-CONTROLLED SCENE
+════════════════════════════════════════════ */
+#journey{
+  position:relative;z-index:1;overflow:hidden;
+  background:linear-gradient(180deg,var(--bg),#030308 50%,var(--bg));
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.journey-inner{max-width:1300px;margin:0 auto;padding:64px 6% 20px;position:relative;z-index:1;}
+.journey-tag{display:flex;align-items:center;gap:10px;margin-bottom:14px;justify-content:center;}
+.journey-title{
+  font-family:'Syne',sans-serif;font-weight:800;text-align:center;
+  font-size:clamp(1.5rem,3vw,2.3rem);letter-spacing:-1px;color:var(--white);margin-bottom:6px;
+}
+.journey-sub{text-align:center;color:var(--muted);font-size:.86rem;max-width:520px;margin:0 auto 30px;line-height:1.7;}
+.journey-scene-wrap{position:relative;width:100%;height:340px;border-radius:24px;overflow:hidden;border:1px solid var(--border2);background:#02020a;}
+#journeyCanvas{display:block;width:100%;height:100%;}
+.journey-stages{
+  position:absolute;inset:0;pointer-events:none;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding:0 4% 16px;
+}
+.j-stage{
+  flex:1;text-align:center;font-family:'Syne',sans-serif;font-weight:800;
+  font-size:.62rem;letter-spacing:2px;color:rgba(240,244,255,.22);
+  transition:color .35s,transform .35s,text-shadow .35s;
+  transform:translateY(4px);
+}
+.j-stage.active{color:var(--teal);transform:translateY(0);text-shadow:0 0 18px rgba(0,245,200,.6);}
+@media(max-width:768px){
+  .journey-scene-wrap{height:220px;border-radius:16px;}
+  .j-stage{font-size:.52rem;letter-spacing:1px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .j-stage{transition:none;}
+}
+
+/* ════════════════════════════════════════════
    TRUST MARQUEE
 ════════════════════════════════════════════ */
 .marquee-wrap{padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(0,245,200,.012);overflow:hidden;position:relative;z-index:1;}
@@ -454,6 +494,55 @@ nav.scrolled{padding:12px 6%;background:rgba(5,5,16,.92);border-color:rgba(0,245
 .ach-icon{font-size:1.4rem;margin-bottom:8px;}
 .ach-val{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--teal);}
 .ach-lbl{font-size:.68rem;color:var(--muted);margin-top:2px;}
+
+/* ════════════════════════════════════════════
+   CAPABILITIES — SERVICES, PRICING, TECH
+════════════════════════════════════════════ */
+#capabilities{padding:100px 6% 60px;position:relative;z-index:1;}
+.cap-inner{max-width:1260px;margin:0 auto;}
+.cap-header{max-width:640px;margin:0 auto 44px;text-align:center;}
+
+/* Pricing rail */
+.price-rail{
+  display:flex;gap:16px;overflow-x:auto;padding:8px 2px 22px;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+}
+.price-rail::-webkit-scrollbar{height:5px;}
+.price-rail::-webkit-scrollbar-thumb{background:rgba(0,245,200,.25);border-radius:4px;}
+.p-chip{
+  scroll-snap-align:start;flex:0 0 200px;
+  background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:20px 18px;transition:all .3s;position:relative;
+}
+.p-chip:hover{background:var(--card2);border-color:rgba(0,245,200,.25);transform:translateY(-4px);}
+.p-chip-ic{font-size:1.3rem;margin-bottom:10px;}
+.p-chip-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.86rem;color:var(--white);margin-bottom:8px;line-height:1.3;min-height:2.4em;}
+.p-chip-price{font-family:'Syne',sans-serif;font-weight:800;font-size:1.18rem;color:var(--teal);}
+.p-chip-time{font-size:.66rem;color:var(--muted);margin-top:4px;letter-spacing:.5px;}
+.p-chip.apps .p-chip-price{color:var(--purple);}
+
+.cap-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px;margin-bottom:70px;}
+.cap-note{text-align:center;color:var(--muted2);font-size:.72rem;margin-top:14px;letter-spacing:.3px;}
+
+/* Tech strip */
+.tech-strip-wrap{position:relative;}
+.tech-strip{
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:center;
+  max-width:900px;margin:0 auto;
+}
+.t-chip{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.025);border:1px solid var(--border);
+  border-radius:50px;padding:10px 18px;font-size:.8rem;font-weight:600;color:var(--muted);
+  transition:all .3s;
+}
+.t-chip i,.t-chip span.t-dot{color:var(--teal);}
+.t-chip:hover{border-color:rgba(0,245,200,.35);color:var(--white);background:rgba(0,245,200,.04);transform:translateY(-2px);}
+
+@media(max-width:768px){
+  #capabilities{padding:70px 6% 40px;}
+  .p-chip{flex:0 0 168px;padding:16px 14px;}
+}
 
 /* ════════════════════════════════════════════
    APP SHOWCASE SECTION — NEW!
@@ -899,7 +988,7 @@ footer{
 <!-- MODAL OVERLAY -->
 <div id="modal-overlay" onclick="closeModal(event)">
   <div class="modal" id="modal-box">
-    <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('open');document.body.style.overflow=''"><i class="fas fa-times"></i></button>
+    <button class="modal-close" aria-label="Close project details" onclick="closeModal({target:document.getElementById('modal-overlay')})"><i class="fas fa-times"></i></button>
     <div id="modal-content"></div>
   </div>
 </div>
@@ -912,17 +1001,21 @@ footer{
     <span class="npill">Portfolio</span>
   </div>
   <ul class="nlinks" id="nLinks">
+    <li><a href="#journey">Journey</a></li>
     <li><a href="#portfolio">Work</a></li>
     <li><a href="#apps">Apps</a></li>
+    <li><a href="#capabilities">Pricing</a></li>
     <li><a href="#founder">About</a></li>
     <li><a href="https://tkwebsolutions.in" target="_blank">Main Site</a></li>
     <li><a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!" target="_blank" class="ncta">Free Demo →</a></li>
   </ul>
-  <button class="hbg" id="hbgBtn"><span></span><span></span><span></span></button>
+  <button class="hbg" id="hbgBtn" aria-label="Toggle mobile menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobNav" id="mobNav">
+  <a href="#journey" onclick="this.closest('.mobNav').classList.remove('open')">Journey</a>
   <a href="#portfolio" onclick="this.closest('.mobNav').classList.remove('open')">Work</a>
   <a href="#apps" onclick="this.closest('.mobNav').classList.remove('open')">Apps</a>
+  <a href="#capabilities" onclick="this.closest('.mobNav').classList.remove('open')">Pricing</a>
   <a href="#founder" onclick="this.closest('.mobNav').classList.remove('open')">About</a>
   <a href="https://tkwebsolutions.in" target="_blank">Main Site</a>
   <a href="https://wa.me/919079368240" target="_blank" style="color:var(--teal);font-weight:700;">Free Demo →</a>
@@ -939,7 +1032,7 @@ footer{
       <h1 class="hero-h1">
         <span class="l1">Real Work,</span>
         <span class="l2"><span class="glitch" data-text="Real Results." id="tw-target">Real Results.</span><span class="tw-cur"></span></span>
-        <span class="l3">5+ Live Websites · 2 Android Apps · Bharatpur</span>
+        <span class="l3">6+ Live Websites · 2 Android Apps · Bharatpur</span>
       </h1>
       <p class="hero-p">Har project ek story hai — coaching se lekar e-commerce tak, NGO se lekar Android apps tak. Yahan dekho hum ne kya banaya hai — aur aapke liye kya bana sakte hain.</p>
       <div class="hero-btns">
@@ -948,10 +1041,10 @@ footer{
         <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20Free%20demo%20chahiye." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Free Demo</a>
       </div>
       <div class="hero-stats">
-        <div class="hstat"><div class="hstat-n">5+</div><div class="hstat-l">Live Websites</div></div>
+        <div class="hstat"><div class="hstat-n">6+</div><div class="hstat-l">Live Websites</div></div>
         <div class="hstat"><div class="hstat-n">2</div><div class="hstat-l">Android Apps</div></div>
-        <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l">Satisfied</div></div>
-        <div class="hstat"><div class="hstat-n">₹7K</div><div class="hstat-l">Se Shuru</div></div>
+        <div class="hstat"><div class="hstat-n">1:1</div><div class="hstat-l">Direct Support</div></div>
+        <div class="hstat"><div class="hstat-n">₹9,999</div><div class="hstat-l">Se Shuru</div></div>
         <div class="hstat"><div class="hstat-n">7</div><div class="hstat-l">Din Delivery</div></div>
       </div>
     </div>
@@ -965,10 +1058,10 @@ footer{
             <div class="ds-bar" style="width:82%;background:linear-gradient(90deg,var(--teal),var(--purple));"></div>
             <div class="ds-bar"></div><div class="ds-bar"></div>
             <div class="ds-cards">
-              <div class="ds-card"><span>Websites</span><strong>5+</strong></div>
+              <div class="ds-card"><span>Websites</span><strong>6+</strong></div>
               <div class="ds-card"><span>Apps</span><strong>2 📱</strong></div>
               <div class="ds-card"><span>Delivery</span><strong>7 Din</strong></div>
-              <div class="ds-card"><span>From</span><strong>₹7K</strong></div>
+              <div class="ds-card"><span>From</span><strong>₹9,999</strong></div>
             </div>
           </div>
           <div class="device-home"><div class="device-home-bar"></div></div>
@@ -979,14 +1072,33 @@ footer{
           <div class="fb1-val">5 Sites + 2 Apps ✅</div>
         </div>
         <div class="fbadge fb2">
-          <div class="fb2-lbl">Client Rating</div>
-          <div class="fb2-stars">★★★★★</div>
-          <div class="fb2-val">5.0 / 5.0</div>
+          <div class="fb2-lbl">Delivery Time</div>
+          <div class="fb2-stars"><i class="fas fa-bolt" style="color:var(--gold);"></i></div>
+          <div class="fb2-val">5–7 Days</div>
         </div>
         <div class="fbadge fb3">
           <div class="fb3-lbl">Based In</div>
           <div class="fb3-val">Bharatpur 📍</div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DIGITAL JOURNEY — SCROLL SCENE ════ -->
+<section id="journey">
+  <div class="journey-inner">
+    <div class="journey-tag"><div class="hero-dot"></div><span class="hero-tagtxt">The TK Web Solutions Way</span></div>
+    <h2 class="journey-title">Idea Se Digital Reality Tak</h2>
+    <p class="journey-sub">Har project isi road se guzarta hai — dream se shuru, launch pe khatam nahi, growth continue hoti hai.</p>
+    <div class="journey-scene-wrap rv from-bottom">
+      <canvas id="journeyCanvas" role="img" aria-label="Animated illustration of a vehicle travelling through five stages: Dream, Design, Build, Launch, Grow"></canvas>
+      <div class="journey-stages" id="journeyStages">
+        <div class="j-stage" data-i="0">DREAM</div>
+        <div class="j-stage" data-i="1">DESIGN</div>
+        <div class="j-stage" data-i="2">BUILD</div>
+        <div class="j-stage" data-i="3">LAUNCH</div>
+        <div class="j-stage" data-i="4">GROW</div>
       </div>
     </div>
   </div>
@@ -1003,7 +1115,7 @@ footer{
     <div class="marquee-item"><i class="fas fa-landmark"></i><span>E-Mitra Websites</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-mobile-alt"></i><span>100% Mobile Friendly</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-bolt"></i><span>5-7 Din Delivery</span></div><span class="marquee-sep">·</span>
-    <div class="marquee-item"><i class="fas fa-rupee-sign"></i><span>Starting ₹7,000</span></div><span class="marquee-sep">·</span>
+    <div class="marquee-item"><i class="fas fa-rupee-sign"></i><span>Starting ₹9,999</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-search"></i><span>SEO Included</span></div><span class="marquee-sep">·</span>
     <!-- duplicate -->
     <div class="marquee-item"><i class="fas fa-shopping-bag"></i><span>E-Commerce Stores</span></div><span class="marquee-sep">·</span>
@@ -1014,7 +1126,7 @@ footer{
     <div class="marquee-item"><i class="fas fa-landmark"></i><span>E-Mitra Websites</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-mobile-alt"></i><span>100% Mobile Friendly</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-bolt"></i><span>5-7 Din Delivery</span></div><span class="marquee-sep">·</span>
-    <div class="marquee-item"><i class="fas fa-rupee-sign"></i><span>Starting ₹7,000</span></div><span class="marquee-sep">·</span>
+    <div class="marquee-item"><i class="fas fa-rupee-sign"></i><span>Starting ₹9,999</span></div><span class="marquee-sep">·</span>
     <div class="marquee-item"><i class="fas fa-search"></i><span>SEO Included</span></div><span class="marquee-sep">·</span>
   </div>
 </div>
@@ -1029,7 +1141,7 @@ footer{
       <div class="founder-photo-frame">
         <div class="founder-photo-ring"></div>
         <div class="founder-photo-box" id="founderPhotoBox">
-          <img src="https://tkwebsolutions.in/founder.jpg" alt="Tarun Singh — Founder TK Web Solutions"
+          <img src="founder.jpg" alt="Tarun Singh — Founder TK Web Solutions" loading="lazy"
                onerror="this.src='https://ui-avatars.com/api/?name=Tarun+Singh&size=400&background=00f5c8&color=050510&bold=true&font-size=0.4'">
           <div class="photo-overlay"><span class="photo-overlay-txt">Tarun Singh · Founder · Bharatpur</span></div>
         </div>
@@ -1123,15 +1235,15 @@ footer{
           <div class="tl-content">
             <div class="tl-year">2025 — Expansion</div>
             <div class="tl-title">Android App Development Shuru</div>
-            <div class="tl-desc">Android Studio seekha. TK Web Solutions app aur EduPrime app banaya. WebView architecture, UPI payments, client portal — sab ek hi app mein.</div>
+            <div class="tl-desc">Android Studio seekha. TK Web Solutions app aur EduPrime app banaya. WebView architecture, Razorpay payments, client portal — sab ek hi app mein.</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-icon"><i class="fas fa-rocket"></i></div>
           <div class="tl-content">
             <div class="tl-year">2025 — Growth</div>
-            <div class="tl-title">5+ Live Projects Delivered</div>
-            <div class="tl-desc">E-Commerce, Coaching, NGO, Business, E-Mitra — 5 alag industries mein websites banain. 100% client satisfaction.</div>
+            <div class="tl-title">6+ Live Projects Delivered</div>
+            <div class="tl-desc">E-Commerce, Coaching, NGO, Business, E-Mitra, School — 6 alag industries mein websites banain, sab fully custom-built.</div>
           </div>
         </div>
         <div class="tl-item">
@@ -1139,7 +1251,7 @@ footer{
           <div class="tl-content">
             <div class="tl-year">2026 — Now</div>
             <div class="tl-title">AI-Powered, Full-Stack Approach</div>
-            <div class="tl-desc">Google AI Mode optimization, Android apps, advanced chatbots, aur premium designs ke saath Rajasthan ka best web agency banne ki journey.</div>
+            <div class="tl-desc">Google AI Mode optimization, Android apps, advanced chatbots, aur premium designs ke saath ek full-stack digital studio banane ki journey — Bharatpur se, Rajasthan ke liye.</div>
           </div>
         </div>
       </div>
@@ -1148,7 +1260,7 @@ footer{
       <div class="founder-achievements">
         <div class="ach-card">
           <div class="ach-icon">🚀</div>
-          <div class="ach-val">5+</div>
+          <div class="ach-val">6+</div>
           <div class="ach-lbl">Live Websites Delivered</div>
         </div>
         <div class="ach-card">
@@ -1228,7 +1340,7 @@ footer{
                     <div style="font-size:.45rem;font-weight:700;color:var(--purple);">👤</div>
                   </div>
                   <div style="background:rgba(255,193,59,.08);border:1px solid rgba(255,193,59,.15);border-radius:6px;padding:5px;text-align:center;">
-                    <div style="font-size:.28rem;color:rgba(255,255,255,.4);">UPI Pay</div>
+                    <div style="font-size:.28rem;color:rgba(255,255,255,.4);">Razorpay</div>
                     <div style="font-size:.45rem;font-weight:700;color:var(--gold);">₹</div>
                   </div>
                   <div style="background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.15);border-radius:6px;padding:5px;text-align:center;">
@@ -1248,12 +1360,12 @@ footer{
                 <div style="position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(167,139,250,.018) 2px,rgba(167,139,250,.018) 4px);z-index:1;"></div>
                 <div style="font-size:.32rem;color:var(--purple);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;position:relative;z-index:2;">Owner Dashboard</div>
                 <div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.2);border-radius:6px;padding:5px;position:relative;z-index:2;">
-                  <div style="font-size:.28rem;color:rgba(255,255,255,.4);">Active Clients</div>
-                  <div style="font-size:.55rem;font-weight:800;color:var(--purple);">12</div>
+                  <div style="font-size:.28rem;color:rgba(255,255,255,.4);">Live Projects</div>
+                  <div style="font-size:.55rem;font-weight:800;color:var(--purple);">6+</div>
                 </div>
                 <div style="background:rgba(0,245,200,.1);border:1px solid rgba(0,245,200,.2);border-radius:6px;padding:5px;position:relative;z-index:2;">
-                  <div style="font-size:.28rem;color:rgba(255,255,255,.4);">Revenue</div>
-                  <div style="font-size:.5rem;font-weight:800;color:var(--teal);">₹85K</div>
+                  <div style="font-size:.28rem;color:rgba(255,255,255,.4);">Status</div>
+                  <div style="font-size:.5rem;font-weight:800;color:var(--teal);">All Live ✅</div>
                 </div>
                 <div style="background:rgba(255,193,59,.08);border:1px solid rgba(255,193,59,.15);border-radius:6px;padding:5px;position:relative;z-index:2;">
                   <div style="font-size:.28rem;color:rgba(255,255,255,.4);">Notifications</div>
@@ -1266,10 +1378,10 @@ footer{
         </div>
 
         <div class="app-desc">
-          <p class="app-desc-text">TK Web Solutions ka official Android app — services showcase, UPI/Custom payment flow, EmailJS notifications, <strong style="color:var(--white);">Owner Dashboard</strong> aur <strong style="color:var(--white);">Client Portal</strong> — sab ek hi app mein. Android Studio + WebView architecture.</p>
+          <p class="app-desc-text">TK Web Solutions ka official Android app — services showcase, Razorpay-powered secure payment flow, EmailJS notifications, <strong style="color:var(--white);">Owner Dashboard</strong> aur <strong style="color:var(--white);">Client Portal</strong> — sab ek hi app mein. Android Studio + WebView architecture.</p>
           <div class="app-features">
             <span class="app-feat">📱 Android 5.0+</span>
-            <span class="app-feat">💳 UPI Payment</span>
+            <span class="app-feat">💳 Razorpay Payments</span>
             <span class="app-feat">📧 EmailJS</span>
             <span class="app-feat">👤 Owner Dashboard</span>
             <span class="app-feat">🔒 Client Portal</span>
@@ -1336,8 +1448,8 @@ footer{
                 <div style="position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,193,59,.018) 2px,rgba(255,193,59,.018) 4px);z-index:1;"></div>
                 <div style="font-size:.3rem;color:var(--gold);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;position:relative;z-index:2;">Results & Batches</div>
                 <div style="background:rgba(255,193,59,.1);border:1px solid rgba(255,193,59,.2);border-radius:5px;padding:5px;position:relative;z-index:2;">
-                  <div style="font-size:.26rem;color:rgba(255,255,255,.4);">Topper</div>
-                  <div style="font-size:.44rem;font-weight:800;color:var(--gold);">Ravi Kumar — AIR 42</div>
+                  <div style="font-size:.26rem;color:rgba(255,255,255,.4);">Results Page</div>
+                  <div style="font-size:.4rem;font-weight:800;color:var(--gold);">Batch-wise Ranks</div>
                 </div>
                 <div style="background:rgba(0,245,200,.08);border:1px solid rgba(0,245,200,.15);border-radius:5px;padding:5px;position:relative;z-index:2;">
                   <div style="font-size:.26rem;color:rgba(255,255,255,.4);">Fee Structure</div>
@@ -1380,9 +1492,58 @@ footer{
       <div class="ast"><div class="ast-n">2</div><div class="ast-l">Apps Built</div></div>
       <div class="ast"><div class="ast-n">Android</div><div class="ast-l" style="font-size:.52rem;">Studio + WebView</div></div>
       <div class="ast"><div class="ast-n">APK</div><div class="ast-l">Direct Download</div></div>
-      <div class="ast"><div class="ast-n">₹10K</div><div class="ast-l">Se App Banta Hai</div></div>
+      <div class="ast"><div class="ast-n">₹14,999</div><div class="ast-l">Se App Banta Hai</div></div>
     </div>
 
+  </div>
+</section>
+
+<!-- ════ CAPABILITIES: SERVICES, PRICING, TECH ════ -->
+<section id="capabilities">
+  <div class="cap-inner">
+    <div class="cap-header rv from-bottom">
+      <div class="sec-tag" style="justify-content:center;"><div class="sec-tagline"></div><span class="sec-tagtxt">Current Pricing</span></div>
+      <h2 class="sec-h" style="font-size:clamp(1.7rem,3.4vw,2.6rem);">What It Actually Costs</h2>
+      <p class="sec-p" style="margin:12px auto 0;">Same pricing as the main website — one-time payment, no hidden fees, no outdated rate cards.</p>
+    </div>
+
+    <div class="price-rail rv from-bottom">
+      <div class="p-chip"><div class="p-chip-ic">🖼️</div><div class="p-chip-name">Portfolio Website</div><div class="p-chip-price">₹9,999</div><div class="p-chip-time">5–7 Days</div></div>
+      <div class="p-chip"><div class="p-chip-ic">🏛️</div><div class="p-chip-name">E-Mitra Website</div><div class="p-chip-price">₹11,999</div><div class="p-chip-time">5–7 Days</div></div>
+      <div class="p-chip"><div class="p-chip-ic">🔄</div><div class="p-chip-name">Website Redesign</div><div class="p-chip-price">₹11,999</div><div class="p-chip-time">5–7 Days</div></div>
+      <div class="p-chip"><div class="p-chip-ic">🎓</div><div class="p-chip-name">Coaching Website</div><div class="p-chip-price">₹14,999</div><div class="p-chip-time">5–7 Days</div></div>
+      <div class="p-chip"><div class="p-chip-ic">🏢</div><div class="p-chip-name">Business Website</div><div class="p-chip-price">₹17,999</div><div class="p-chip-time">5–7 Days</div></div>
+      <div class="p-chip"><div class="p-chip-ic">🏫</div><div class="p-chip-name">School Website</div><div class="p-chip-price">₹19,999</div><div class="p-chip-time">5–7 Days</div></div>
+      <div class="p-chip"><div class="p-chip-ic">🛍️</div><div class="p-chip-name">E-Commerce Website</div><div class="p-chip-price">₹19,999</div><div class="p-chip-time">5–7 Days</div></div>
+      <div class="p-chip apps"><div class="p-chip-ic">📱</div><div class="p-chip-name">Android APK App</div><div class="p-chip-price">₹14,999</div><div class="p-chip-time">5–7 Days</div></div>
+      <div class="p-chip apps"><div class="p-chip-ic">🚀</div><div class="p-chip-name">Play Store App</div><div class="p-chip-price">₹24,999</div><div class="p-chip-time">7–10 Days</div></div>
+      <div class="p-chip apps"><div class="p-chip-ic">🍎</div><div class="p-chip-name">Android + iOS App</div><div class="p-chip-price">₹44,999</div><div class="p-chip-time">10–15 Days</div></div>
+    </div>
+
+    <div class="cap-cta-row rv from-bottom">
+      <a href="https://tkwebsolutions.in/#services" target="_blank" class="btn-ghost"><i class="fas fa-list"></i> Full Pricing on Main Site</a>
+      <a href="https://tkwebsolutions.in/#payment" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#0052ff,#00d4ff);box-shadow:0 0 32px rgba(0,150,255,.3);"><i class="fas fa-lock"></i> Pay Securely — Razorpay</a>
+    </div>
+    <p class="cap-note">All payments are processed securely through Razorpay (UPI, cards &amp; net banking). We do not accept manual bank transfers or offline payments.</p>
+
+    <div class="cap-header rv from-bottom" style="margin-top:70px;">
+      <div class="sec-tag" style="justify-content:center;"><div class="sec-tagline" style="background:var(--purple);"></div><span class="sec-tagtxt" style="color:var(--purple);">Built With</span></div>
+      <h2 class="sec-h" style="font-size:clamp(1.5rem,3vw,2.2rem);">The Actual Stack</h2>
+    </div>
+    <div class="tech-strip-wrap rv from-bottom">
+      <div class="tech-strip">
+        <div class="t-chip"><i class="fab fa-html5"></i> HTML5</div>
+        <div class="t-chip"><i class="fab fa-css3-alt"></i> CSS3</div>
+        <div class="t-chip"><i class="fab fa-js"></i> JavaScript</div>
+        <div class="t-chip"><i class="fab fa-android"></i> Android Studio</div>
+        <div class="t-chip"><i class="fas fa-window-restore"></i> WebView</div>
+        <div class="t-chip"><i class="fas fa-lock"></i> Razorpay</div>
+        <div class="t-chip"><i class="fas fa-envelope"></i> EmailJS</div>
+        <div class="t-chip"><i class="fas fa-cogs"></i> Google Apps Script</div>
+        <div class="t-chip"><i class="fas fa-robot"></i> Gemini AI Chatbot</div>
+        <div class="t-chip"><i class="fas fa-search"></i> SEO / Search Console</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1392,25 +1553,26 @@ footer{
   <div class="port-inner">
     <div class="rv from-bottom">
       <div class="sec-tag"><div class="sec-tagline"></div><span class="sec-tagtxt">Live Projects</span></div>
-      <h2 class="sec-h">5 Live <span style="color:var(--teal)">Websites</span><br>— Real Work, Real Clients</h2>
-      <p class="sec-p">5 alag industries, 5 alag challenges. Har website ek business ki digital identity hai jo 24/7 kaam karti hai.</p>
+      <h2 class="sec-h">6 Live <span style="color:var(--teal)">Websites</span><br>— Real Work, Real Clients</h2>
+      <p class="sec-p">6 alag industries, 6 alag challenges. Har website ek business ki digital identity hai jo 24/7 kaam karti hai.</p>
     </div>
 
     <div class="port-stats rv from-bottom">
-      <div class="pstat"><div class="pstat-n">5+</div><div class="pstat-l">Websites Live</div></div>
+      <div class="pstat"><div class="pstat-n">6+</div><div class="pstat-l">Websites Live</div></div>
       <div class="pstat"><div class="pstat-n">2</div><div class="pstat-l">Apps Built</div></div>
-      <div class="pstat"><div class="pstat-n">5</div><div class="pstat-l">Industries</div></div>
+      <div class="pstat"><div class="pstat-n">6</div><div class="pstat-l">Industries</div></div>
       <div class="pstat"><div class="pstat-n">7</div><div class="pstat-l">Din Delivery</div></div>
-      <div class="pstat"><div class="pstat-n">₹7K</div><div class="pstat-l">Se Shuru</div></div>
+      <div class="pstat"><div class="pstat-n">₹9,999</div><div class="pstat-l">Se Shuru</div></div>
     </div>
 
     <div class="filter-row">
-      <button class="ftab active" onclick="filterP('all',this)"><i class="fas fa-th-large"></i> All (5)</button>
+      <button class="ftab active" onclick="filterP('all',this)"><i class="fas fa-th-large"></i> All (6)</button>
       <button class="ftab" onclick="filterP('ecommerce',this)"><i class="fas fa-shopping-bag"></i> E-Commerce</button>
       <button class="ftab" onclick="filterP('coaching',this)"><i class="fas fa-graduation-cap"></i> Coaching</button>
       <button class="ftab" onclick="filterP('ngo',this)"><i class="fas fa-hands-helping"></i> NGO</button>
       <button class="ftab" onclick="filterP('business',this)"><i class="fas fa-briefcase"></i> Business</button>
       <button class="ftab" onclick="filterP('emitra',this)"><i class="fas fa-landmark"></i> E-Mitra</button>
+      <button class="ftab" onclick="filterP('school',this)"><i class="fas fa-school"></i> School</button>
     </div>
 
     <div class="cards-grid" id="cgrid">
@@ -1446,7 +1608,7 @@ footer{
             <div class="pc-tags"><span class="pc-tag">HTML5</span><span class="pc-tag">CSS3</span><span class="pc-tag">JS</span><span class="pc-tag">WhatsApp Orders</span><span class="pc-tag">E-Commerce</span></div>
             <div class="pc-foot" onclick="event.stopPropagation()">
               <a href="https://tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/" target="_blank" class="pc-live" style="background:linear-gradient(90deg,#ff9800,#ff5722);"><i class="fas fa-external-link-alt"></i> View Live</a>
-              <a href="https://wa.me/919079368240?text=Hi!%20Chirag%20Handlooms%20jaisi%20website%20chahiye." target="_blank" class="pc-wa"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://wa.me/919079368240?text=Hi!%20Chirag%20Handlooms%20jaisi%20website%20chahiye." target="_blank" class="pc-wa" aria-label="WhatsApp about a website like Chirag Handlooms"><i class="fab fa-whatsapp"></i></a>
             </div>
           </div>
         </div>
@@ -1483,7 +1645,7 @@ footer{
             <div class="pc-tags"><span class="pc-tag">HTML5</span><span class="pc-tag">CSS3</span><span class="pc-tag">JS</span><span class="pc-tag">WhatsApp</span><span class="pc-tag">Inquiry Form</span></div>
             <div class="pc-foot" onclick="event.stopPropagation()">
               <a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" target="_blank" class="pc-live" style="background:linear-gradient(90deg,#1565c0,#42a5f5);"><i class="fas fa-external-link-alt"></i> View Live</a>
-              <a href="https://wa.me/919079368240?text=Hi!%20Coaching%20website%20chahiye." target="_blank" class="pc-wa"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://wa.me/919079368240?text=Hi!%20Coaching%20website%20chahiye." target="_blank" class="pc-wa" aria-label="WhatsApp about a coaching website"><i class="fab fa-whatsapp"></i></a>
             </div>
           </div>
         </div>
@@ -1519,7 +1681,7 @@ footer{
             <div class="pc-tags"><span class="pc-tag">HTML5</span><span class="pc-tag">CSS3</span><span class="pc-tag">JS</span><span class="pc-tag">Donation Form</span><span class="pc-tag">Volunteer</span></div>
             <div class="pc-foot" onclick="event.stopPropagation()">
               <a href="https://tarunsinghgunesh.github.io/ekpahalindia/" target="_blank" class="pc-live" style="background:linear-gradient(90deg,#2e7d32,#66bb6a);"><i class="fas fa-external-link-alt"></i> View Live</a>
-              <a href="https://wa.me/919079368240?text=Hi!%20NGO%20website%20chahiye." target="_blank" class="pc-wa"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://wa.me/919079368240?text=Hi!%20NGO%20website%20chahiye." target="_blank" class="pc-wa" aria-label="WhatsApp about an NGO website"><i class="fab fa-whatsapp"></i></a>
             </div>
           </div>
         </div>
@@ -1555,7 +1717,7 @@ footer{
             <div class="pc-tags"><span class="pc-tag">HTML5</span><span class="pc-tag">CSS3</span><span class="pc-tag">JS</span><span class="pc-tag">Maps API</span><span class="pc-tag">WhatsApp</span></div>
             <div class="pc-foot" onclick="event.stopPropagation()">
               <a href="https://tarunsinghgunesh.github.io/support_small_business/" target="_blank" class="pc-live" style="background:linear-gradient(90deg,#bf360c,#ff7043);"><i class="fas fa-external-link-alt"></i> View Live</a>
-              <a href="https://wa.me/919079368240?text=Hi!%20Business%20website%20chahiye." target="_blank" class="pc-wa"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://wa.me/919079368240?text=Hi!%20Business%20website%20chahiye." target="_blank" class="pc-wa" aria-label="WhatsApp about a business website"><i class="fab fa-whatsapp"></i></a>
             </div>
           </div>
         </div>
@@ -1591,7 +1753,43 @@ footer{
             <div class="pc-tags"><span class="pc-tag">HTML5</span><span class="pc-tag">CSS3</span><span class="pc-tag">JS</span><span class="pc-tag">UPI QR</span><span class="pc-tag">Govt Services</span></div>
             <div class="pc-foot" onclick="event.stopPropagation()">
               <a href="https://tarunsinghgunesh.github.io/dhruvemitrasevakendra/" target="_blank" class="pc-live" style="background:linear-gradient(90deg,#1a237e,#3f51b5);"><i class="fas fa-external-link-alt"></i> View Live</a>
-              <a href="https://wa.me/919079368240?text=Hi!%20E-Mitra%20website%20chahiye." target="_blank" class="pc-wa"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://wa.me/919079368240?text=Hi!%20E-Mitra%20website%20chahiye." target="_blank" class="pc-wa" aria-label="WhatsApp about an E-Mitra website"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 6: NEW TAGORE PUBLIC SCHOOL -->
+      <div class="pcard" data-cat="school" style="--gc:rgba(26,86,255,.12);" onclick="openModal('tagore')">
+        <div class="pcinner">
+          <div class="pc-strip" style="background:linear-gradient(90deg,#1a3a6b,#4a90e2,#1a3a6b);"></div>
+          <div class="pc-live-lbl">✨ LIVE WEBSITE</div>
+          <div class="pc-browser">
+            <div class="pc-bbar">
+              <div class="pc-dots"><div class="pc-dot" style="background:#ff5f57;"></div><div class="pc-dot" style="background:#ffbd2e;"></div><div class="pc-dot" style="background:#28c840;"></div></div>
+              <div class="pc-url">tarunsinghgunesh.github.io/New-tagore-public-school/</div>
+            </div>
+            <div class="pc-screen">
+              <div class="pc-sci" style="background:linear-gradient(135deg,#0a1628,#1a3a6b);">
+                <span class="pc-sci-tag">🏫 School / Education</span>
+                <span class="pc-sci-name" style="color:#fff;">New Tagore<br>Public School</span>
+                <div class="pc-bars"><div class="pc-bar" style="background:linear-gradient(90deg,#1a3a6b,#4a90e2);width:100%;"></div><div class="pc-bar" style="background:#2a5298;"></div><div class="pc-bar" style="background:#1a3a6b;"></div></div>
+                <div class="pc-navs"><div class="pc-navi" style="background:rgba(26,58,107,.4);">🏫</div><div class="pc-navi" style="background:rgba(74,144,226,.4);">📝</div><div class="pc-navi" style="background:rgba(42,82,152,.4);">🏆</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="pc-body">
+            <div class="pc-cat"><span class="pc-cat-ic">🏫</span><span class="pc-cat-lbl" style="color:#4a90e2;">School / Education</span></div>
+            <div class="pc-name">New Tagore Public School</div>
+            <div class="pc-desc">School website with admission form, fee structure, faculty section, results showcase aur Google Maps ke saath.</div>
+            <div class="pc-ba">
+              <div class="pc-ba-cell"><div class="pc-ba-lbl r">Before</div><div class="pc-ba-val">No online presence</div></div>
+              <div class="pc-ba-cell"><div class="pc-ba-lbl g">After</div><div class="pc-ba-val">Professional school website</div></div>
+            </div>
+            <div class="pc-tags"><span class="pc-tag">HTML5</span><span class="pc-tag">CSS3</span><span class="pc-tag">JS</span><span class="pc-tag">Admissions</span><span class="pc-tag">Results</span></div>
+            <div class="pc-foot" onclick="event.stopPropagation()">
+              <a href="https://tarunsinghgunesh.github.io/New-tagore-public-school/" target="_blank" class="pc-live" style="background:linear-gradient(90deg,#1a3a6b,#4a90e2);"><i class="fas fa-external-link-alt"></i> View Live</a>
+              <a href="https://wa.me/919079368240?text=Hi!%20School%20website%20chahiye%20New%20Tagore%20jaisi." target="_blank" class="pc-wa" aria-label="WhatsApp about a school website"><i class="fab fa-whatsapp"></i></a>
             </div>
           </div>
         </div>
@@ -1613,7 +1811,7 @@ footer{
   <div class="cta-box rv from-bottom">
     <div class="cta-badge"><div class="cta-badge-dot"></div><p>🔥 <strong style="color:var(--white);">Websites + Apps — Sab Banate Hain!</strong></p></div>
     <h2 class="cta-h">Aapki Website Ya App Bhi<br>Yahan Ho Sakti Hai — <span>Free Demo Lo!</span></h2>
-    <p class="cta-p">Upar dekhe 5 websites aur 2 Android apps — sab real, sab live. Coaching, business, NGO, e-commerce, ya kuch aur — website se lekar Play Store app tak. Starting ₹7,000 se!</p>
+    <p class="cta-p">Upar dekhe 5 websites aur 2 Android apps — sab real, sab live. Coaching, business, NGO, e-commerce, ya kuch aur — website se lekar Play Store app tak. Starting ₹9,999 se!</p>
     <div class="cta-btns">
       <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20Free%20demo%20chahiye!" target="_blank" class="btn-wa" style="padding:16px 36px;font-size:.95rem;"><i class="fab fa-whatsapp"></i> WhatsApp — Free Demo!</a>
       <a href="tel:+919079368240" class="btn-primary" style="padding:16px 30px;font-size:.95rem;"><i class="fas fa-phone"></i> Call: 90793 68240</a>
@@ -1635,10 +1833,10 @@ footer{
       <p class="ft-brand-p">Premium web & app development — websites, Android apps, coaching, e-commerce, NGO aur E-Mitra. Bharatpur, Rajasthan.</p>
       <a href="tel:+919079368240" class="ft-tel"><i class="fas fa-phone"></i> +91 90793 68240</a>
       <div class="ft-socs">
-        <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="ft-soc"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank" class="ft-soc"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://wa.me/919079368240" target="_blank" class="ft-soc"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="ft-soc"><i class="fab fa-telegram"></i></a>
+        <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="ft-soc" aria-label="TK Web Solutions on Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank" class="ft-soc" aria-label="TK Web Solutions on Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/919079368240" target="_blank" class="ft-soc" aria-label="Chat with TK Web Solutions on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="ft-soc" aria-label="TK Web Solutions on Telegram"><i class="fab fa-telegram"></i></a>
       </div>
     </div>
     <div class="ft-col">
@@ -1685,7 +1883,7 @@ footer{
   <a href="tel:+919079368240" class="fl flp"><i class="fas fa-phone"></i><span>Call Now</span></a>
   <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="fl fli"><i class="fab fa-instagram"></i><span>Instagram</span></a>
 </div>
-<button class="stbtn" id="stbtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+<button class="stbtn" id="stbtn" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
 
 <script>
 /* ══ PROJECT DATA ══ */
@@ -1704,13 +1902,18 @@ var projects={
     url:'https://tarunsinghgunesh.github.io/support_small_business/',wa:'Hi!%20Business%20website%20chahiye.'},
   emitra:{tag:'E-Mitra / Govt Services',title:'Dhruv E-Mitra Kendra',sub:'Government Services Portal · E-Mitra Seva Kendra',bg:'linear-gradient(135deg,#0a0f2e,#1a237e)',color:'#90caf9',
     features:['Government Services List','UPI QR Code Payment','Application Status Checker','Service Calculator','Contact & Location','Mobile Responsive'],
-    url:'https://tarunsinghgunesh.github.io/dhruvemitrasevakendra/',wa:'Hi!%20E-Mitra%20website%20chahiye.'}
+    url:'https://tarunsinghgunesh.github.io/dhruvemitrasevakendra/',wa:'Hi!%20E-Mitra%20website%20chahiye.'},
+  tagore:{tag:'School / Education',title:'New Tagore Public School',sub:'School Website · Admissions & Results Portal',bg:'linear-gradient(135deg,#0a1628,#1a3a6b)',color:'#4a90e2',
+    features:['Admission Form','Fee Structure','Faculty Section','Results Showcase','Google Maps','Mobile Responsive'],
+    url:'https://tarunsinghgunesh.github.io/New-tagore-public-school/',wa:'Hi!%20School%20website%20chahiye%20New%20Tagore%20jaisi.'}
 };
 
 function openModal(id){
   var p=projects[id];if(!p)return;
+  var content=document.getElementById('modal-content'),overlay=document.getElementById('modal-overlay');
+  if(!content||!overlay)return;
   var feats=p.features.map(function(f){return '<div class="modal-feat"><i class="fas fa-check-circle"></i><span>'+f+'</span></div>';}).join('');
-  document.getElementById('modal-content').innerHTML=
+  content.innerHTML=
     '<div class="modal-tag">'+p.tag+'</div>'+
     '<div class="modal-title">'+p.title+'</div>'+
     '<div class="modal-sub">'+p.sub+'</div>'+
@@ -1720,14 +1923,15 @@ function openModal(id){
     '<div class="modal-features">'+feats+'</div>'+
     '<div class="modal-btns">'+
       '<a href="'+p.url+'" target="_blank" class="modal-btn-primary"><i class="fas fa-external-link-alt"></i> View Live Website</a>'+
-      '<a href="https://wa.me/919079368240?text='+p.wa+'" target="_blank" class="modal-btn-wa"><i class="fab fa-whatsapp"></i></a>'+
+      '<a href="https://wa.me/919079368240?text='+p.wa+'" target="_blank" class="modal-btn-wa" aria-label="WhatsApp about this project"><i class="fab fa-whatsapp"></i></a>'+
     '</div>';
-  document.getElementById('modal-overlay').classList.add('open');
+  overlay.classList.add('open');
   document.body.style.overflow='hidden';
 }
 function closeModal(e){
-  if(e.target===document.getElementById('modal-overlay')){
-    document.getElementById('modal-overlay').classList.remove('open');
+  var overlay=document.getElementById('modal-overlay');
+  if(overlay&&e.target===overlay){
+    overlay.classList.remove('open');
     document.body.style.overflow='';
   }
 }
@@ -1735,6 +1939,7 @@ function closeModal(e){
 /* ══ LOADER ══ */
 (function(){
   var bar=document.getElementById('ldrBar'),pct=document.getElementById('ldrPct'),ldr=document.getElementById('ldr'),p=0;
+  if(!bar||!pct||!ldr)return;
   var iv=setInterval(function(){
     p+=Math.random()*14+4;
     if(p>=100){p=100;clearInterval(iv);setTimeout(function(){ldr.classList.add('out');},280);}
@@ -1746,7 +1951,7 @@ function closeModal(e){
 /* ══ CURSOR ══ */
 var c=document.getElementById('cur'),r=document.getElementById('cur2');
 var mx=0,my=0,rx=0,ry=0;
-if(c){
+if(c&&r){
   document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});
   (function lp(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(lp);})();
   document.querySelectorAll('a,button,.pcard,.pstat,.ach-card,.ftab,.app-card,.ast').forEach(function(el){
@@ -1768,16 +1973,204 @@ if(ctx){
   })();
 }
 
+/* ══ DIGITAL JOURNEY — SCROLL-CONTROLLED CANVAS SCENE ══ */
+(function(){
+  var wrap=document.querySelector('.journey-scene-wrap');
+  var cv=document.getElementById('journeyCanvas');
+  var stageEls=document.querySelectorAll('#journeyStages .j-stage');
+  if(!wrap||!cv||!stageEls.length)return;
+
+  var ctx=cv.getContext('2d');
+  if(!ctx)return; // canvas 2D unsupported — fail safely, rest of page unaffected
+  var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isMobile=window.innerWidth<769;
+  var dpr=Math.min(window.devicePixelRatio||1,2);
+  var w=0,h=0,progress=0.4,visible=false,rafId=null,t=0;
+
+  function resize(){
+    var r=wrap.getBoundingClientRect();
+    w=r.width;h=r.height;
+    cv.width=w*dpr;cv.height=h*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+
+  // Distant skyline (procedural, deterministic — no external assets)
+  var buildings=[];
+  function buildSkyline(){
+    buildings=[];
+    var n=isMobile?9:16;
+    var bx=0;
+    for(var i=0;i<n;i++){
+      var bw=18+Math.random()*30;
+      buildings.push({x:bx,w:bw,h:20+Math.random()*(isMobile?38:60),lit:Math.random()>0.4});
+      bx+=bw+6;
+    }
+  }
+
+  function drawScene(){
+    ctx.clearRect(0,0,w,h);
+    var horizon=h*0.52;
+
+    // sky gradient
+    var sky=ctx.createLinearGradient(0,0,0,horizon);
+    sky.addColorStop(0,'#050510');sky.addColorStop(1,'#0a0a22');
+    ctx.fillStyle=sky;ctx.fillRect(0,0,w,horizon);
+
+    // skyline silhouette (slow parallax layer)
+    var shift=(t*0.15)%(w+200)-100;
+    ctx.fillStyle='rgba(15,15,35,.9)';
+    buildings.forEach(function(b){
+      var bx=((b.x+shift)%(w+200))-100;
+      ctx.fillRect(bx,horizon-b.h,b.w,b.h);
+      if(b.lit&&!reduceMotion){
+        ctx.fillStyle='rgba(0,245,200,.35)';
+        ctx.fillRect(bx+b.w*0.3,horizon-b.h+8,2,2);
+        ctx.fillRect(bx+b.w*0.6,horizon-b.h+16,2,2);
+        ctx.fillStyle='rgba(15,15,35,.9)';
+      }
+    });
+
+    // ground
+    var ground=ctx.createLinearGradient(0,horizon,0,h);
+    ground.addColorStop(0,'#0d0d22');ground.addColorStop(1,'#050510');
+    ctx.fillStyle=ground;ctx.fillRect(0,horizon,w,h-horizon);
+
+    // perspective road (converging toward vanishing point)
+    var vpX=w*0.5,vpY=horizon;
+    ctx.beginPath();
+    ctx.moveTo(vpX-6,vpY);ctx.lineTo(vpX+6,vpY);
+    ctx.lineTo(w*0.86,h);ctx.lineTo(w*0.14,h);
+    ctx.closePath();
+    ctx.fillStyle='rgba(8,8,20,.9)';ctx.fill();
+
+    // glowing lane lines, animated to feel like forward motion
+    var laneOffset=reduceMotion?0:(t*1.6)%40;
+    ctx.strokeStyle='rgba(0,245,200,.55)';
+    ctx.shadowColor='rgba(0,245,200,.6)';ctx.shadowBlur=6;
+    ctx.lineWidth=1.4;
+    for(var seg=-1;seg<14;seg++){
+      var y0=vpY+((seg*40+laneOffset)*(seg*40+laneOffset))/220;
+      if(y0>h)continue;
+      var spread=(y0-vpY)/(h-vpY);
+      var lx=vpX+(spread*w*0.09);
+      var rx=vpX-(spread*w*0.09);
+      var len=6+spread*22;
+      ctx.beginPath();ctx.moveTo(lx,y0);ctx.lineTo(lx,Math.min(y0+len,h));ctx.stroke();
+      ctx.beginPath();ctx.moveTo(rx,y0);ctx.lineTo(rx,Math.min(y0+len,h));ctx.stroke();
+    }
+    ctx.shadowBlur=0;
+
+    // light streaks (particles) — desktop only, skipped for reduced motion
+    if(!reduceMotion&&!isMobile){
+      for(var p=0;p<18;p++){
+        var pr=((p*53+t*2.2)%260)/260;
+        var py=vpY+pr*pr*(h-vpY);
+        var spr=(py-vpY)/(h-vpY);
+        var px=vpX+((p%2===0?1:-1)*spr*w*0.16)+(Math.sin(p)*10);
+        ctx.fillStyle='rgba(0,245,200,'+(0.5*(1-pr))+')';
+        ctx.fillRect(px,py,1.4,10*spr+2);
+      }
+    }
+
+    // ── VEHICLE ── sleek low-poly silhouette, moves along road with scroll progress
+    var carY=h*0.86;
+    var roadSpreadAtCar=(carY-vpY)/(h-vpY);
+    var laneHalf=roadSpreadAtCar*w*0.09;
+    var carX=vpX+( (progress*2-1) * (laneHalf*0.55) ); // stays within lane, drifts with progress
+    var scale=(isMobile?0.62:1)*(0.55+roadSpreadAtCar*0.6);
+    var bob=reduceMotion?0:Math.sin(t*0.12)*2*scale;
+
+    ctx.save();
+    ctx.translate(carX,carY+bob);
+    ctx.scale(scale,scale);
+
+    // glow under car
+    var glow=ctx.createRadialGradient(0,14,4,0,14,60);
+    glow.addColorStop(0,'rgba(0,245,200,.35)');glow.addColorStop(1,'rgba(0,245,200,0)');
+    ctx.fillStyle=glow;ctx.beginPath();ctx.ellipse(0,16,52,14,0,0,Math.PI*2);ctx.fill();
+
+    // body (simple sleek wedge silhouette, wireframe accent)
+    ctx.beginPath();
+    ctx.moveTo(-46,10);ctx.lineTo(-30,-6);ctx.lineTo(-8,-14);ctx.lineTo(18,-14);
+    ctx.lineTo(38,-2);ctx.lineTo(48,10);ctx.lineTo(-46,10);ctx.closePath();
+    var bodyGrad=ctx.createLinearGradient(-46,-14,48,10);
+    bodyGrad.addColorStop(0,'#12122a');bodyGrad.addColorStop(1,'#1c1c38');
+    ctx.fillStyle=bodyGrad;ctx.fill();
+    ctx.strokeStyle='rgba(0,245,200,.75)';ctx.lineWidth=1.2;ctx.shadowColor='rgba(0,245,200,.7)';ctx.shadowBlur=8;ctx.stroke();
+    ctx.shadowBlur=0;
+
+    // cabin
+    ctx.beginPath();
+    ctx.moveTo(-14,-14);ctx.lineTo(-4,-24);ctx.lineTo(14,-24);ctx.lineTo(20,-14);ctx.closePath();
+    ctx.fillStyle='rgba(0,245,200,.14)';ctx.fill();
+    ctx.strokeStyle='rgba(0,245,200,.5)';ctx.lineWidth=1;ctx.stroke();
+
+    // wheels
+    ctx.fillStyle='#050510';
+    ctx.beginPath();ctx.arc(-26,12,7,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(30,12,7,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='rgba(0,245,200,.4)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.arc(-26,12,7,0,Math.PI*2);ctx.stroke();
+    ctx.beginPath();ctx.arc(30,12,7,0,Math.PI*2);ctx.stroke();
+
+    // headlight streak forward
+    if(!reduceMotion){
+      ctx.fillStyle='rgba(255,255,255,.55)';
+      ctx.beginPath();ctx.ellipse(50,4,10,2,0,0,Math.PI*2);ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function tick(){
+    if(!visible){rafId=null;return;}
+    t+=1;
+    drawScene();
+    rafId=requestAnimationFrame(tick);
+  }
+  function ensureRunning(){
+    if(reduceMotion){drawScene();return;}
+    if(!rafId&&visible)rafId=requestAnimationFrame(tick);
+  }
+
+  function updateProgress(){
+    var r=wrap.getBoundingClientRect();
+    var vh=window.innerHeight;
+    var raw=1-((r.top+r.height*0.4)/(vh+r.height*0.4));
+    progress=Math.max(0,Math.min(1,raw));
+    var stageIdx=Math.min(4,Math.floor(progress*5));
+    stageEls.forEach(function(el){el.classList.toggle('active',parseInt(el.dataset.i,10)===stageIdx);});
+    if(reduceMotion)drawScene();
+  }
+
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      visible=e.isIntersecting;
+      if(visible)ensureRunning();
+    });
+  },{threshold:0.05});
+  io.observe(wrap);
+
+  resize();buildSkyline();updateProgress();drawScene();
+
+  window.addEventListener('scroll',updateProgress,{passive:true});
+  window.addEventListener('resize',function(){
+    isMobile=window.innerWidth<769;
+    resize();buildSkyline();updateProgress();drawScene();
+  });
+})();
+
 /* ══ SCROLL ══ */
+var sprogEl=document.getElementById('sprog'),navEl=document.getElementById('nav'),stbtnEl=document.getElementById('stbtn');
 window.addEventListener('scroll',function(){
   var s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-  document.getElementById('sprog').style.width=(s/h*100)+'%';
-  document.getElementById('nav').classList.toggle('scrolled',s>40);
-  document.getElementById('stbtn').classList.toggle('on',s>500);
-});
+  if(sprogEl)sprogEl.style.width=(s/h*100)+'%';
+  if(navEl)navEl.classList.toggle('scrolled',s>40);
+  if(stbtnEl)stbtnEl.classList.toggle('on',s>500);
+},{passive:true});
 
 /* ══ MOBILE NAV ══ */
-document.getElementById('hbgBtn').addEventListener('click',function(){document.getElementById('mobNav').classList.toggle('open');});
+var hbgBtnEl=document.getElementById('hbgBtn'),mobNavEl=document.getElementById('mobNav');
+if(hbgBtnEl&&mobNavEl){hbgBtnEl.addEventListener('click',function(){mobNavEl.classList.toggle('open');});}
 
 /* ══ TYPEWRITER ══ */
 (function(){
@@ -1841,7 +2234,7 @@ var pcO=new IntersectionObserver(function(en){
 document.querySelectorAll('.pcard').forEach(function(card){
   pcO.observe(card);
   card.addEventListener('mousemove',function(e){
-    var inner=card.querySelector('.pcinner');
+    var inner=card.querySelector('.pcinner');if(!inner)return;
     var rect=card.getBoundingClientRect();
     var x=(e.clientX-rect.left-rect.width/2)/(rect.width/2);
     var y=(e.clientY-rect.top-rect.height/2)/(rect.height/2);
@@ -1849,7 +2242,7 @@ document.querySelectorAll('.pcard').forEach(function(card){
     inner.style.transition='transform .06s';
   });
   card.addEventListener('mouseleave',function(){
-    var inner=card.querySelector('.pcinner');
+    var inner=card.querySelector('.pcinner');if(!inner)return;
     inner.style.transform='rotateY(0) rotateX(0) translateZ(0) scale(1)';
     inner.style.transition='transform .55s cubic-bezier(.23,1,.32,1)';
   });
@@ -1911,8 +2304,8 @@ function filterP(cat,btn){
 /* ══ ESC KEY ══ */
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){
-    document.getElementById('modal-overlay').classList.remove('open');
-    document.body.style.overflow='';
+    var overlay=document.getElementById('modal-overlay');
+    if(overlay){overlay.classList.remove('open');document.body.style.overflow='';}
   }
 });
 </script>
