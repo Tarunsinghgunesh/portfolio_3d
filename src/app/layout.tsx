@@ -130,6 +130,7 @@ export default function RootLayout({
         sameAs: [
           'https://tkwebsolutions.in/',
           'https://tkwebsolutions.in/tarun-singh.html',
+          'https://portfolio-3d-iota-eight.vercel.app/',
           'https://github.com/Tarunsinghgunesh',
           'https://www.instagram.com/tkwebsolutions_official',
           'https://t.me/TKwebsolutions_bot',
